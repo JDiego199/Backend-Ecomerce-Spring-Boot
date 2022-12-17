@@ -6,7 +6,7 @@ package com.BackendEcomerce.model;
 
 /**
  *
- * @author mota1
+ * @author fabricio
  */
 public class Direccion {
     
