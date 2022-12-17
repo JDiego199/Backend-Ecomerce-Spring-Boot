@@ -49,7 +49,7 @@ public class Ordenes {
 	private Calendar fecha;     
     
     
-        @OneToMany(mappedBy = "ordenes", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "ordenes", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Orden_detalles> orden_detalles;
     
 }

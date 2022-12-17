@@ -10,4 +10,5 @@ package com.BackendEcomerce.model;
  */
 public class Cliente_empresa {
     
+    
 }

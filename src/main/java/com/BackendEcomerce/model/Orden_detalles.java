@@ -47,8 +47,15 @@ public class Orden_detalles {
     @Temporal(TemporalType.DATE)
 	private Calendar fecha_orden;
     
-        @ManyToOne()
-    @JoinColumn(name = "Ordenes_id")
+
+
+    
+            @ManyToOne()
+    @JoinColumn(name = "ordenes_id")
     private Ordenes ordenes;
+        
+    @ManyToOne()
+    @JoinColumn(name = "producto_id")
+    private Producto producto;
     
 }
