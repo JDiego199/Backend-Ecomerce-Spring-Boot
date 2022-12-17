@@ -63,9 +63,15 @@ public class Cliente {
 	private String nombre_usuario;
     
      
-        @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private Cliente_empresa cliente_empresa;
+    
+       @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private Cliente_persona cliente_persona;
      
-
+    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
+    private Direccion direccion;
+     
 }

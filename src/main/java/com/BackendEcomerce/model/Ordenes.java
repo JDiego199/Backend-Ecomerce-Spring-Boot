@@ -57,5 +57,10 @@ public class Ordenes {
        @ManyToOne()
     @JoinColumn(name = "repartidor_id")
     private Repartidor repartidor;
+       
+          @ManyToOne()
+    @JoinColumn(name = "cliente_id")
+    private Cliente_persona cliente_persona;
+     
     
 }

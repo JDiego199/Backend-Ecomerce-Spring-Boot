@@ -22,8 +22,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table (name = "feedback")
-public class feedback {
+@Table (name = "Feedback")
+public class Feedback {
     
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,13 +32,17 @@ public class feedback {
     
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
-    
+
+
+
     @ManyToOne()
     @JoinColumn(name = "producto_id")
     private Producto producto;
     
-    
-
+    @ManyToOne()
+    @JoinColumn(name = "persona_id")
+    private Cliente_persona cliente_persona;
     
     
 }
+
