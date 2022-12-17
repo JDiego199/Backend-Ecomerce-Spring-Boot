@@ -4,13 +4,13 @@
  */
 package com.BackendEcomerce.service;
 
-import com.BackendEcomerce.Repository.ClienteRepository;
-import com.BackendEcomerce.model.Cliente;
+import com.BackendEcomerce.model.Cliente_empresa;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.BackendEcomerce.Repository.Cliente_empresaRepository;
 
 /**
  *
@@ -18,48 +18,39 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @RequiredArgsConstructor
-public class ClienteServiceImplement implements ClienteService{
+public class Cliente_empresaServiceImplement implements Cliente_empresaService {
     
-    @Autowired
-       private ClienteRepository clienteRepository;
-    
-    /*    @Override
-    public List<Cliente> getAll() {
-       List<Cliente> cliente = this.clienteRepository.findAll();
         
-        return cliente;
-    }
-     @Override
-    public Cliente getById(int id) {
-        return clienteRepository.getById(id);
-    }
-    */
-      @Override
+    @Autowired
+       private Cliente_empresaRepository cliente_empresaRepository;
+    
+        
+    @Override
     @Transactional(readOnly=true)
-    public List<Cliente> findAll()
+    public List<Cliente_empresa> findAll()
     {
-    return (List<Cliente>) clienteRepository.findAll();
+    return (List<Cliente_empresa>) cliente_empresaRepository.findAll();
     
     }
     
     @Override
        @Transactional(readOnly=false)
-    public Cliente save( Cliente cliente){
+    public Cliente_empresa save( Cliente_empresa producto){
     
-        return clienteRepository.save(cliente);
+        return cliente_empresaRepository.save(producto);
     }
     
     @Override
        @Transactional(readOnly=true)
-    public Cliente findById(Integer id)
+    public Cliente_empresa findById(Integer id)
     {
-        return clienteRepository.findById(id).orElse(null);
+        return cliente_empresaRepository.findById(id).orElse(null);
     }
     
     @Override
        @Transactional(readOnly=false)
     public void delete(Integer id)
     {
-        clienteRepository.deleteById(id);
+        cliente_empresaRepository.deleteById(id);
     }
 }

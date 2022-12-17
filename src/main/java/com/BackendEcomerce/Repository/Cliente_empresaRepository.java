@@ -4,7 +4,7 @@
  */
 package com.BackendEcomerce.Repository;
 
-import com.BackendEcomerce.model.Cliente;
+import com.BackendEcomerce.model.Cliente_empresa;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
  * @author mota1
  */
 @Repository
-public interface ClienteRepository extends CrudRepository<Cliente, Integer> {
-
+public interface Cliente_empresaRepository  extends CrudRepository<Cliente_empresa, Integer>{
     
 }
