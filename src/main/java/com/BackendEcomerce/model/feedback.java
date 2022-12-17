@@ -27,8 +27,8 @@ public class feedback {
     
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_producto;
-    private Integer id_persona;
+    private Integer id_feedback;
+
     
     @Column(name = "descripcion", nullable = false)
     private String descripcion;

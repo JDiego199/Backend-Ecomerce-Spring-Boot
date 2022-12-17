@@ -26,7 +26,7 @@ public class Cliente_empresa {
 
 
    @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cliente_id")
    private Integer id_empresa;
 
    @Column(name = "dni_ruc", nullable = false)
@@ -49,6 +49,10 @@ public class Cliente_empresa {
    @OneToMany(mappedBy = "cliente_empresa", cascade = CascadeType.ALL, orphanRemoval = true)
    private List<Producto> producto;
 
+       @OneToOne
+    @MapsId
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
    
    public Cliente_empresa(Integer id_empresa, String dni_ruc, String razon_social, String nombre_comercial, int reputacion, Calendar fecha_registro, Cliente cliente) {
       this.id_empresa = id_empresa;
