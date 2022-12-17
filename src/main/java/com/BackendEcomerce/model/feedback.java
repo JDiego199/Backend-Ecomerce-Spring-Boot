@@ -33,7 +33,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table (name = "feeback")
+@Table (name = "feedback")
 public class feedback {
     
     @Id
@@ -42,10 +42,10 @@ public class feedback {
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
     
-        @Column(name = "id_producto", nullable = false)
+    @Column(name = "id_producto", nullable = false)
     private int id_producto;
     
-        @Column(name = "id_persona", nullable = false)
+    @Column(name = "id_persona", nullable = false)
     private int id_persona;
     
     
