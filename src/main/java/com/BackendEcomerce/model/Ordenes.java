@@ -32,35 +32,33 @@ import lombok.Setter;
 @Entity
 @Table(name = "ordenes")
 public class Ordenes {
-        
-        @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_orden;
-	
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id_orden;
+
     @Column(name = "numero_factura", nullable = false)
-	private int numero_factura;
+    private int numero_factura;
     @Column(name = "subTotal", nullable = false)
-	private float subTotal;
+    private float subTotal;
     @Column(name = "total", nullable = false)
-	private float total;
+    private float total;
     @Column(name = "iva", nullable = false)
     private float iva;
 
     @Column(name = "fecha", nullable = false)
     @Temporal(TemporalType.DATE)
-	private Calendar fecha;     
-    
-    
+    private Calendar fecha;
+
     @OneToMany(mappedBy = "ordenes", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Orden_detalles> orden_detalles;
-    
-       @ManyToOne()
+
+    @ManyToOne()
     @JoinColumn(name = "repartidor_id")
     private Repartidor repartidor;
-       
-          @ManyToOne()
+
+    @ManyToOne()
     @JoinColumn(name = "cliente_id")
     private Cliente_persona cliente_persona;
-     
-    
+
 }

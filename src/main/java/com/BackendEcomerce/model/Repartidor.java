@@ -32,7 +32,7 @@ public class Repartidor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_repartidor;
-             
+
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
