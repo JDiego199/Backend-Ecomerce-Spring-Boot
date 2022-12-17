@@ -4,6 +4,7 @@
  */
 package com.BackendEcomerce.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -57,7 +58,20 @@ public class Direccion {
     private Calendar fecha;
 
     @ManyToOne()
+     @JsonIgnore
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
+    public Direccion(String direccion, String ciudad, String provincia, String calle, String codigo_postal, Calendar fecha, Cliente cliente) {
+        this.direccion = direccion;
+        this.ciudad = ciudad;
+        this.provincia = provincia;
+        this.calle = calle;
+        this.codigo_postal = codigo_postal;
+        this.fecha = fecha;
+        this.cliente = cliente;
+    }
+    
+    
+    
 }

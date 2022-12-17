@@ -4,12 +4,11 @@
  */
 package com.BackendEcomerce.Controller;
 
-import com.BackendEcomerce.model.Cliente_empresa;
-import com.BackendEcomerce.service.Cliente_empresaService;
+import com.BackendEcomerce.model.Direccion;
+import com.BackendEcomerce.service.DireccionService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,37 +20,39 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author mota1
  */
+
 @RestController
 @CrossOrigin(origins="*")
 @RequestMapping ("/api/")
-public class Cliente_empersaController {
+
+public class DireccionController {
     
         @Autowired
-	public Cliente_empresaService cliente_empresaService;
+	public DireccionService direccionService;
 	
         
         //Guardar
-	@PostMapping("/cliente_empresa")
-	public Cliente_empresa guardar (@RequestBody Cliente_empresa cliente_empresa){
+	@PostMapping("/direccion")
+	public Direccion guardar (@RequestBody Direccion direccion){
 		
-		return cliente_empresaService.save(cliente_empresa);                       	
+		return direccionService.save(direccion);                       	
 	}
 	
 	//listar
-	@GetMapping("/cliente_empresa")
-	public List<Cliente_empresa> listar(){
-		return cliente_empresaService.findAll();
+	@GetMapping("/direccion")
+	public List<Direccion> listar(){
+		return direccionService.findAll();
 	}
 	
-	@DeleteMapping ("/producto/{id}")
+	/*@DeleteMapping ("/producto/{id}")
 	public void eliminar(@PathVariable Integer id){
-		cliente_empresaService.delete(id);
-	}
+		productoService.delete(id);
+	}*/
 	
         //get una cuenta
-	@GetMapping ("/cliente_empresa/{id}")
-	public Cliente_empresa getUnaAhorros(@PathVariable Integer id){
-		return cliente_empresaService.findById(id);
+	@GetMapping ("/direccion/{id}")
+	public Direccion getUnaAhorros(@PathVariable Integer id){
+		return direccionService.findById(id);
 	}
 	
        /* @PutMapping ("/producto/{id}")
@@ -66,7 +67,6 @@ public class Cliente_empersaController {
                 productoActual.setPrecio_fabrica(producto.getPrecio_fabrica());
                 productoActual.setFecha_registro(producto.getFecha_registro());
    
-                return cliente_empresaService.save(productoActual);
+                return productoService.save(productoActual);
 	}*/
-    
 }

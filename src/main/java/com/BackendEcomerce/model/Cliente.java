@@ -47,7 +47,7 @@ public class Cliente {
     @Column(name = "email", nullable = false)
 	private String email;
     @Column(name = "telefono", nullable = false)
-	private int telefono;
+	private String telefono;
 
     @Column(name = "fecha_nacimient", nullable = false)
     @Temporal(TemporalType.DATE)
@@ -74,11 +74,12 @@ public class Cliente {
     @PrimaryKeyJoinColumn
     private Cliente_persona cliente_persona;
      
+    
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-    @JsonIgnore
     private List<Direccion> direccion;
 
-    public Cliente(String nombre, String email, int telefono, Calendar fecha_nacimient, Calendar fecha_registro, String contrasena, String nombre_usuario) {
+
+    public Cliente(String nombre, String email, String telefono, Calendar fecha_nacimient, Calendar fecha_registro, String contrasena, String nombre_usuario, List<Direccion> direccion) {
         this.nombre = nombre;
         this.email = email;
         this.telefono = telefono;
@@ -86,7 +87,9 @@ public class Cliente {
         this.fecha_registro = fecha_registro;
         this.contrasena = contrasena;
         this.nombre_usuario = nombre_usuario;
+        this.direccion = direccion;
     }
+    
      
     
 }

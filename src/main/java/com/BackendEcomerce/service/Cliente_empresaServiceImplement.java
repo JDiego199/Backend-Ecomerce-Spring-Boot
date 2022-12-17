@@ -35,9 +35,9 @@ public class Cliente_empresaServiceImplement implements Cliente_empresaService {
     
     @Override
        @Transactional(readOnly=false)
-    public Cliente_empresa save( Cliente_empresa producto){
+    public Cliente_empresa save( Cliente_empresa cliente_empresa){
     
-        return cliente_empresaRepository.save(producto);
+        return cliente_empresaRepository.save(cliente_empresa);
     }
     
     @Override

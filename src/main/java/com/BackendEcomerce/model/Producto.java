@@ -66,7 +66,7 @@ public class Producto {
     private List<Orden_detalles> Orden_detalles;
 
     @ManyToOne()
-    @JsonIgnore
+ 
     @JoinColumn(name = "cliente_empresa_id")
     private Cliente_empresa cliente_empresa;
 

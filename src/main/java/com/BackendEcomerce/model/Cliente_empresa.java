@@ -4,6 +4,7 @@
  */
 package com.BackendEcomerce.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Calendar;
@@ -44,6 +45,7 @@ public class Cliente_empresa {
     // @JoinColumn(name = "id_cliente")
     // private Cliente cliente;
     @OneToMany(mappedBy = "cliente_empresa", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Producto> producto;
 
     @OneToOne
@@ -51,7 +53,8 @@ public class Cliente_empresa {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    public Cliente_empresa(String dni_ruc, String razon_social, String nombre_comercial, int reputacion, Calendar fecha_registro, List<Producto> producto, Cliente cliente) {
+    public Cliente_empresa(Integer id_empresa, String dni_ruc, String razon_social, String nombre_comercial, int reputacion, Calendar fecha_registro, List<Producto> producto, Cliente cliente) {
+        this.id_empresa = id_empresa;
         this.dni_ruc = dni_ruc;
         this.razon_social = razon_social;
         this.nombre_comercial = nombre_comercial;
@@ -60,6 +63,8 @@ public class Cliente_empresa {
         this.producto = producto;
         this.cliente = cliente;
     }
+
+
 
 
     
