@@ -4,12 +4,7 @@
  */
 package com.BackendEcomerce.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,22 +17,24 @@ import lombok.Setter;
 
 
 
- /*@Getter
+@PersistenceContext
+@Getter
 @Setter
 @NoArgsConstructor
 @Entity
-@Table (name = "Feedback")*/
+@Table (name = "Feedback")
 public class Feedback {
     
- /*   @Id
+    @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    
+    private Integer id_producto;
+    private Integer id_persona;
     
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
     
 
-    */
+
     
     
 }
