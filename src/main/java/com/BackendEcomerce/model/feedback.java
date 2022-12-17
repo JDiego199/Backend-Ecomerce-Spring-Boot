@@ -33,7 +33,11 @@ public class feedback {
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
     
-
+    @ManyToOne()
+    @JoinColumn(name = "producto_id")
+    private Producto producto;
+    
+    
 
     
     
