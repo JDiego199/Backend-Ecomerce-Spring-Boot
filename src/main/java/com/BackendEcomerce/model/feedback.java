@@ -22,8 +22,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table (name = "Feedback")
-public class Feedback {
+@Table (name = "feedback")
+public class feedback {
     
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
