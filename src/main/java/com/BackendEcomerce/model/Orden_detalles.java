@@ -11,8 +11,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -25,23 +23,15 @@ import lombok.Setter;
  *
  * @author mota1
  */
- @PersistenceContext
-    @Getter
+@Getter
 @Setter
 @NoArgsConstructor
 @Entity
-@Table (name = "orden_detalle")
-public class Orden_detalle {
-
-    public Orden_detalle(Integer id_orden_detalle, String cantidad, float descuento, float subtotal, Calendar fecha_orden) {
-        this.id_orden_detalle = id_orden_detalle;
-        this.cantidad = cantidad;
-        this.descuento = descuento;
-        this.subtotal = subtotal;
-        this.fecha_orden = fecha_orden;
-    }
-
-        
+@Table(name = "ordendes_detalles")
+public class Orden_detalles {
+    
+    
+    
         @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_orden_detalle;
@@ -56,9 +46,9 @@ public class Orden_detalle {
     @Column(name = "fecha_orden", nullable = false)
     @Temporal(TemporalType.DATE)
 	private Calendar fecha_orden;
-   
-  @ManyToOne
-  @JoinColumn(name = "id_orden")
-    private Orden orden;
-
+    
+        @ManyToOne()
+    @JoinColumn(name = "Ordenes_id")
+    private Ordenes ordenes;
+    
 }

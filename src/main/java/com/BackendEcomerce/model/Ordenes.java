@@ -4,14 +4,13 @@
  */
 package com.BackendEcomerce.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -25,14 +24,13 @@ import lombok.Setter;
  *
  * @author mota1
  */
- @PersistenceContext
- @Getter
+@Getter
 @Setter
 @NoArgsConstructor
 @Entity
-@Table (name = "orden")
-public class Orden {
-    
+@Table(name = "ordenes")
+public class Ordenes {
+        
         @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_orden;
@@ -51,17 +49,7 @@ public class Orden {
 	private Calendar fecha;     
     
     
+        @OneToMany(mappedBy = "ordenes", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Orden_detalles> orden_detalles;
     
- 
-    @OneToMany(mappedBy = "orden_detalle")
-   private List<Orden_detalle> orden_detalle;
-
-    public Orden(Integer id_orden, int numero_factura, float subTotal, float total, float iva, Calendar fecha) {
-        this.id_orden = id_orden;
-        this.numero_factura = numero_factura;
-        this.subTotal = subTotal;
-        this.total = total;
-        this.iva = iva;
-        this.fecha = fecha;
-    }
 }
