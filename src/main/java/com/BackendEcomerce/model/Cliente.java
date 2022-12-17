@@ -4,10 +4,60 @@
  */
 package com.BackendEcomerce.model;
 
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.util.Calendar;
+import java.util.List;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
- * @author mota1
+ * @author fabricio
  */
+@PersistenceContext
+@Getter
+@Setter
+@NoArgsConstructor
+@Entity
+@Table (name = "cliente")
 public class Cliente {
     
+        @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id_orden;
+	
+    @Column(name = "nombre", nullable = false)
+	private String nombre;
+    @Column(name = "email", nullable = false)
+	private String email;
+    @Column(name = "telefono", nullable = false)
+	private int total;
+
+    @Column(name = "fecha_nacimient", nullable = false)
+    @Temporal(TemporalType.DATE)
+	private Calendar fecha;   
+    
+    @Column(name = "fecha_registro", nullable = false)
+    @Temporal(TemporalType.DATE)
+	private Calendar fecha2;     
+    
+    @Column(name = "contrasena", nullable = false)
+	private String contrasena;
+    
+     @Column(name = "nombre_usuario", nullable = false)
+	private String nombre_usuario;
+    
+
 }
