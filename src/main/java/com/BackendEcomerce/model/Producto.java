@@ -46,8 +46,8 @@ public class Producto {
     
 
     
-    @Column(name = "precio", nullable = false)
-	private float precio;
+  
+    
     
     @Column(name = "precio_fabrica", nullable = false)
     private float precio_fabrica;
@@ -67,7 +67,8 @@ public class Producto {
     private List<Orden_detalles> Orden_detalles;
     
     
+    
         @ManyToOne()
     @JoinColumn(name = "cliente_empresa_id")
-    private Cliente_empresa cliente_empreza;
+    private Cliente_empresa cliente_empresa;
 }

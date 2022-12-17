@@ -22,7 +22,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "cliente_empresa")
 public class Cliente_empresa {
-<<<<<<< HEAD
+
 
 
    @Id
@@ -42,13 +42,14 @@ public class Cliente_empresa {
    @Temporal(TemporalType.DATE)
    private Calendar fecha_registro;
 
-   @ManyToOne()
-   @JoinColumn(name = "id_cliente")
-   private Cliente cliente;
+  // @ManyToOne()
+  // @JoinColumn(name = "id_cliente")
+  // private Cliente cliente;
 
    @OneToMany(mappedBy = "cliente_empresa", cascade = CascadeType.ALL, orphanRemoval = true)
    private List<Producto> producto;
 
+   
    public Cliente_empresa(Integer id_empresa, String dni_ruc, String razon_social, String nombre_comercial, int reputacion, Calendar fecha_registro, Cliente cliente) {
       this.id_empresa = id_empresa;
       this.dni_ruc = dni_ruc;
@@ -56,7 +57,7 @@ public class Cliente_empresa {
       this.nombre_comercial = nombre_comercial;
       this.reputacion = reputacion;
       this.fecha_registro = fecha_registro;
-      this.cliente = cliente;
+     // this.cliente = cliente;
    }
 
    @Override
@@ -68,7 +69,7 @@ public class Cliente_empresa {
             ", nombre_comercial='" + nombre_comercial + '\'' +
             ", reputacion=" + reputacion +
             ", fecha_registro=" + fecha_registro +
-            ", cliente=" + cliente +
+       //     ", cliente=" + cliente +
             '}';
    }
 }

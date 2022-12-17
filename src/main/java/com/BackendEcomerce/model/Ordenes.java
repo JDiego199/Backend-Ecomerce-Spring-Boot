@@ -10,6 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -51,5 +53,9 @@ public class Ordenes {
     
     @OneToMany(mappedBy = "ordenes", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Orden_detalles> orden_detalles;
+    
+       @ManyToOne()
+    @JoinColumn(name = "repartidor_id")
+    private Repartidor repartidor;
     
 }
