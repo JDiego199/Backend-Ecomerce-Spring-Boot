@@ -4,10 +4,69 @@
  */
 package com.BackendEcomerce.model;
 
+import jakarta.persistence.*;
+
+import java.util.Calendar;
+import java.util.List;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
- *
  * @author mota1
  */
+@Getter
+@Setter
+@NoArgsConstructor
+@Entity
+@Table(name = "cliente_persona")
 public class Cliente_persona {
-    
+
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Integer id_persona;
+
+   @Column(name = "dni", nullable = false)
+   private String dni;
+
+   @Column(name = "reputacion", nullable = false)
+   private int reputacion;
+
+   @Column(name = "fecha_registro", nullable = false)
+   @Temporal(TemporalType.DATE)
+   private Calendar fecha_registro;
+
+   @ManyToOne()
+   @JoinColumn(name = "id_cliente")
+   private Cliente cliente;
+
+   @OneToMany(mappedBy = "cliente_persona", cascade = CascadeType.ALL, orphanRemoval = true)
+   private List<feedback> feedback;
+
+   @OneToMany(mappedBy = "cliente_persona", cascade = CascadeType.ALL, orphanRemoval = true)
+   private List<Ordenes> orden;
+
+   public Cliente_persona(Integer id_persona, String dni, int reputacion, Calendar fecha_registro, Cliente cliente, List<com.BackendEcomerce.model.feedback> feedback, List<Ordenes> orden) {
+      this.id_persona = id_persona;
+      this.dni = dni;
+      this.reputacion = reputacion;
+      this.fecha_registro = fecha_registro;
+      this.cliente = cliente;
+      this.feedback = feedback;
+      this.orden = orden;
+   }
+
+   @Override
+   public String toString() {
+      return "Cliente_persona{" +
+            "id_persona=" + id_persona +
+            ", dni='" + dni + '\'' +
+            ", reputacion=" + reputacion +
+            ", fecha_registro=" + fecha_registro +
+            ", cliente=" + cliente +
+            ", feedback=" + feedback +
+            ", orden=" + orden +
+            '}';
+   }
 }
