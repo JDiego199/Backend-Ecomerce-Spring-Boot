@@ -24,7 +24,7 @@ import lombok.Setter;
 public class Cliente_persona {
 
    @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
+       @Column(name = "cliente_id")
    private Integer id_persona;
 
    @Column(name = "dni", nullable = false)
@@ -37,15 +37,19 @@ public class Cliente_persona {
    @Temporal(TemporalType.DATE)
    private Calendar fecha_registro;
 
-   @ManyToOne()
-   @JoinColumn(name = "id_cliente")
-   private Cliente cliente;
+
 
    @OneToMany(mappedBy = "cliente_persona", cascade = CascadeType.ALL, orphanRemoval = true)
    private List<Feedback> feedback;
 
    @OneToMany(mappedBy = "cliente_persona", cascade = CascadeType.ALL, orphanRemoval = true)
    private List<Ordenes> ordenes;
+   
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+   
 
    public Cliente_persona(Integer id_persona, String dni, int reputacion, Calendar fecha_registro, Cliente cliente, List<com.BackendEcomerce.model.Feedback> feedback, List<Ordenes> orden) {
       this.id_persona = id_persona;

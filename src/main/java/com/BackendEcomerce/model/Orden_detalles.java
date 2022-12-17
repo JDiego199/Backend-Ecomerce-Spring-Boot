@@ -58,4 +58,6 @@ public class Orden_detalles {
     @JoinColumn(name = "producto_id")
     private Producto producto;
     
+    
+    
 }
