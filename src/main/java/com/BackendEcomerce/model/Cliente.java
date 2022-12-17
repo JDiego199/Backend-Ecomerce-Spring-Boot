@@ -5,6 +5,7 @@
 package com.BackendEcomerce.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,7 +30,7 @@ import lombok.Setter;
  *
  * @author fabricio
  */
-@PersistenceContext
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -46,15 +47,15 @@ public class Cliente {
     @Column(name = "email", nullable = false)
 	private String email;
     @Column(name = "telefono", nullable = false)
-	private int total;
+	private int telefono;
 
     @Column(name = "fecha_nacimient", nullable = false)
     @Temporal(TemporalType.DATE)
-	private Calendar fecha;   
+	private Calendar fecha_nacimient;   
     
     @Column(name = "fecha_registro", nullable = false)
     @Temporal(TemporalType.DATE)
-	private Calendar fecha2;     
+	private Calendar fecha_registro;     
     
     @Column(name = "contrasena", nullable = false)
 	private String contrasena;
@@ -64,14 +65,28 @@ public class Cliente {
     
      
     @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @JsonIgnore
     @PrimaryKeyJoinColumn
     private Cliente_empresa cliente_empresa;
     
-       @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @JsonIgnore
     @PrimaryKeyJoinColumn
     private Cliente_persona cliente_persona;
      
-    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
-    private Direccion direccion;
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Direccion> direccion;
+
+    public Cliente(String nombre, String email, int telefono, Calendar fecha_nacimient, Calendar fecha_registro, String contrasena, String nombre_usuario) {
+        this.nombre = nombre;
+        this.email = email;
+        this.telefono = telefono;
+        this.fecha_nacimient = fecha_nacimient;
+        this.fecha_registro = fecha_registro;
+        this.contrasena = contrasena;
+        this.nombre_usuario = nombre_usuario;
+    }
      
+    
 }

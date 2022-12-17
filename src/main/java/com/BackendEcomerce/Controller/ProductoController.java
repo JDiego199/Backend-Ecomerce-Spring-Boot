@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(origins="*")
 @RequestMapping ("/api/")
+
 public class ProductoController {
     
     @Autowired
@@ -45,10 +46,10 @@ public class ProductoController {
 		return productoService.findAll();
 	}
 	
-	@DeleteMapping ("/producto/{id}")
+	/*@DeleteMapping ("/producto/{id}")
 	public void eliminar(@PathVariable Integer id){
 		productoService.delete(id);
-	}
+	}*/
 	
         //get una cuenta
 	@GetMapping ("/producto/{id}")
@@ -56,7 +57,7 @@ public class ProductoController {
 		return productoService.findById(id);
 	}
 	
-        @PutMapping ("/producto/{id}")
+       /* @PutMapping ("/producto/{id}")
 	public Producto modificar (@RequestBody Producto producto, @PathVariable Integer id){
 		
                 Producto productoActual = productoService.findById(id);
@@ -69,6 +70,6 @@ public class ProductoController {
                 productoActual.setFecha_registro(producto.getFecha_registro());
    
                 return productoService.save(productoActual);
-	}
+	}*/
     
 }

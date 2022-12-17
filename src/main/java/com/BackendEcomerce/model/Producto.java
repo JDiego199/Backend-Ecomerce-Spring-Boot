@@ -4,6 +4,7 @@
  */
 package com.BackendEcomerce.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,6 +19,7 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.util.Calendar;
 import java.util.List;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,6 +28,7 @@ import lombok.Setter;
  *
  * @author mota1
  */
+@Data
 @Getter
 @Setter
 @NoArgsConstructor
@@ -66,7 +69,7 @@ public class Producto {
     @JoinColumn(name = "cliente_empresa_id")
     private Cliente_empresa cliente_empresa;
 
-    public Producto(String nombre, String descripcion, float precio, float precio_fabrica, int cantidad, float descuento, Calendar fecha_registro, List<Orden_detalles> Orden_detalles) {
+    public Producto(String nombre, String descripcion, float precio, float precio_fabrica, int cantidad, float descuento, Calendar fecha_registro, Cliente_empresa cliente_empresa) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -74,8 +77,10 @@ public class Producto {
         this.cantidad = cantidad;
         this.descuento = descuento;
         this.fecha_registro = fecha_registro;
-        this.Orden_detalles = Orden_detalles;
+        this.cliente_empresa = cliente_empresa;
     }
+
+
 
     @Override
     public String toString() {

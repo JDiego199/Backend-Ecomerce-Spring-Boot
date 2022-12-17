@@ -43,7 +43,7 @@ public class Cliente_empresa {
     // @ManyToOne()
     // @JoinColumn(name = "id_cliente")
     // private Cliente cliente;
-    @OneToMany(mappedBy = "cliente_empresa", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cliente_empresa", cascade = CascadeType.ALL)
     private List<Producto> producto;
 
     @OneToOne
@@ -51,14 +51,13 @@ public class Cliente_empresa {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    public Cliente_empresa(Integer id_empresa, String dni_ruc, String razon_social, String nombre_comercial, int reputacion, Calendar fecha_registro, Cliente cliente) {
+    public Cliente_empresa(Integer id_empresa, String dni_ruc, String razon_social, String nombre_comercial, int reputacion, Calendar fecha_registro) {
         this.id_empresa = id_empresa;
         this.dni_ruc = dni_ruc;
         this.razon_social = razon_social;
         this.nombre_comercial = nombre_comercial;
         this.reputacion = reputacion;
         this.fecha_registro = fecha_registro;
-        // this.cliente = cliente;
     }
 
     @Override
