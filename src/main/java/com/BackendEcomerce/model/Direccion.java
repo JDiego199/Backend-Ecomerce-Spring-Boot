@@ -58,8 +58,6 @@ public class Direccion {
     private Calendar fecha;
 
     @ManyToOne()
-     @JsonIgnore
-    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
     public Direccion(String direccion, String ciudad, String provincia, String calle, String codigo_postal, Calendar fecha, Cliente cliente) {

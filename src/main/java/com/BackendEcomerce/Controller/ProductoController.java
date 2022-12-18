@@ -46,10 +46,10 @@ public class ProductoController {
 		return productoService.findAll();
 	}
 	
-	/*@DeleteMapping ("/producto/{id}")
+	@DeleteMapping ("/producto/{id}")
 	public void eliminar(@PathVariable Integer id){
 		productoService.delete(id);
-	}*/
+	}
 	
         //get una cuenta
 	@GetMapping ("/producto/{id}")

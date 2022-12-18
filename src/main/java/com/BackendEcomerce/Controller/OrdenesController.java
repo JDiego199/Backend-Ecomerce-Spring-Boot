@@ -4,8 +4,9 @@
  */
 package com.BackendEcomerce.Controller;
 
-import com.BackendEcomerce.model.Direccion;
-import com.BackendEcomerce.service.DireccionService;
+
+import com.BackendEcomerce.model.Ordenes;
+import com.BackendEcomerce.service.OrdenesService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,39 +22,36 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author mota1
  */
-
 @RestController
 @CrossOrigin(origins="*")
 @RequestMapping ("/api/")
-
-public class DireccionController {
-    
-        @Autowired
-	public DireccionService direccionService;
+public class OrdenesController {
+      @Autowired
+	public OrdenesService OrdenesService;
 	
         
         //Guardar
-	@PostMapping("/direccion")
-	public Direccion guardar (@RequestBody Direccion direccion){
+	@PostMapping("/ordenes")
+	public Ordenes guardar (@RequestBody Ordenes ordenes){
 		
-		return direccionService.save(direccion);                       	
+		return OrdenesService.save(ordenes);                       	
 	}
 	
 	//listar
-	@GetMapping("/direccion")
-	public List<Direccion> listar(){
-		return direccionService.findAll();
+	@GetMapping("/ordenes")
+	public List<Ordenes> listar(){
+		return OrdenesService.findAll();
 	}
 	
-	@DeleteMapping ("/direccion/{id}")
+	@DeleteMapping ("/ordenes/{id}")
 	public void eliminar(@PathVariable Integer id){
-		direccionService.delete(id);
+		OrdenesService.delete(id);
 	}
 	
         //get una cuenta
-	@GetMapping ("/direccion/{id}")
-	public Direccion getUnaAhorros(@PathVariable Integer id){
-		return direccionService.findById(id);
+	@GetMapping ("/ordenes/{id}")
+	public Ordenes getUnaAhorros(@PathVariable Integer id){
+		return OrdenesService.findById(id);
 	}
 	
        /* @PutMapping ("/producto/{id}")
@@ -68,6 +66,7 @@ public class DireccionController {
                 productoActual.setPrecio_fabrica(producto.getPrecio_fabrica());
                 productoActual.setFecha_registro(producto.getFecha_registro());
    
-                return productoService.save(productoActual);
+                return cliente_empresaService.save(productoActual);
 	}*/
+    
 }

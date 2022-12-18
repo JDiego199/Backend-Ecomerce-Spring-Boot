@@ -32,11 +32,14 @@ public class Repartidor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_repartidor;
+    
+    @Column(name = "Nombre_Compania", nullable = false)
+    private String Nombre_Compania;
+    
+    @Column(name = "telefono", nullable = false)
+    private String telefono;
 
-    @Column(name = "descripcion", nullable = false)
-    private String descripcion;
-
-    @OneToMany(mappedBy = "repartidor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany()
     private List<Ordenes> Ordenes;
 
 }

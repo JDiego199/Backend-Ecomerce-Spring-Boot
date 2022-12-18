@@ -36,11 +36,9 @@ public class Feedback {
 
 
     @ManyToOne()
-    @JoinColumn(name = "producto_id")
     private Producto producto;
     
     @ManyToOne()
-    @JoinColumn(name = "persona_id")
     private Cliente_persona cliente_persona;
     
     

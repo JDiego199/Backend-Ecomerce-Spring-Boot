@@ -4,8 +4,8 @@
  */
 package com.BackendEcomerce.Controller;
 
-import com.BackendEcomerce.model.Direccion;
-import com.BackendEcomerce.service.DireccionService;
+import com.BackendEcomerce.model.Orden_detalles;
+import com.BackendEcomerce.service.Orden_detallesService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,39 +21,36 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author mota1
  */
-
 @RestController
 @CrossOrigin(origins="*")
 @RequestMapping ("/api/")
-
-public class DireccionController {
-    
-        @Autowired
-	public DireccionService direccionService;
+public class Orden_detallesController {
+      @Autowired
+	public Orden_detallesService Orden_detallesService;
 	
         
         //Guardar
-	@PostMapping("/direccion")
-	public Direccion guardar (@RequestBody Direccion direccion){
+	@PostMapping("/orden_detalles")
+	public Orden_detalles guardar (@RequestBody Orden_detalles orden_detalles){
 		
-		return direccionService.save(direccion);                       	
+		return Orden_detallesService.save(orden_detalles);                       	
 	}
 	
 	//listar
-	@GetMapping("/direccion")
-	public List<Direccion> listar(){
-		return direccionService.findAll();
+	@GetMapping("/orden_detalles")
+	public List<Orden_detalles> listar(){
+		return Orden_detallesService.findAll();
 	}
 	
-	@DeleteMapping ("/direccion/{id}")
+	@DeleteMapping ("/orden_detalles/{id}")
 	public void eliminar(@PathVariable Integer id){
-		direccionService.delete(id);
+		Orden_detallesService.delete(id);
 	}
 	
         //get una cuenta
-	@GetMapping ("/direccion/{id}")
-	public Direccion getUnaAhorros(@PathVariable Integer id){
-		return direccionService.findById(id);
+	@GetMapping ("/orden_detalles/{id}")
+	public Orden_detalles getUnaAhorros(@PathVariable Integer id){
+		return Orden_detallesService.findById(id);
 	}
 	
        /* @PutMapping ("/producto/{id}")
@@ -68,6 +65,6 @@ public class DireccionController {
                 productoActual.setPrecio_fabrica(producto.getPrecio_fabrica());
                 productoActual.setFecha_registro(producto.getFecha_registro());
    
-                return productoService.save(productoActual);
+                return cliente_empresaService.save(productoActual);
 	}*/
 }

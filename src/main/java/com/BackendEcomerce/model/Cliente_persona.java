@@ -37,15 +37,13 @@ public class Cliente_persona {
     @Temporal(TemporalType.DATE)
     private Calendar fecha_registro;
 
-    @OneToMany(mappedBy = "cliente_persona", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany()
     private List<Feedback> feedback;
 
-    @OneToMany(mappedBy = "cliente_persona", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany()
     private List<Ordenes> ordenes;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "cliente_id")
+    @OneToOne()
     private Cliente cliente;
 
     public Cliente_persona(Integer id_persona, String dni, int reputacion, Calendar fecha_registro, Cliente cliente, List<com.BackendEcomerce.model.Feedback> feedback, List<Ordenes> orden) {

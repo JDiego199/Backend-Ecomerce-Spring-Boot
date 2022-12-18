@@ -29,35 +29,26 @@ import lombok.Setter;
 @Entity
 @Table(name = "ordendes_detalles")
 public class Orden_detalles {
-    
-    
-    
-        @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_orden_detalle;
-	
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id_orden_detalle;
+
     @Column(name = "cantidad", nullable = false)
-	private String cantidad;
+    private String cantidad;
     @Column(name = "descuento", nullable = false)
-	private float descuento;
+    private float descuento;
     @Column(name = "subtotal", nullable = false)
-	private float subtotal;
+    private float subtotal;
 
     @Column(name = "fecha_orden", nullable = false)
     @Temporal(TemporalType.DATE)
-	private Calendar fecha_orden;
-    
+    private Calendar fecha_orden;
 
-
-    
-            @ManyToOne()
-    @JoinColumn(name = "ordenes_id")
-    private Ordenes ordenes;
-        
     @ManyToOne()
-    @JoinColumn(name = "producto_id")
+    private Ordenes ordenes;
+
+    @ManyToOne()
     private Producto producto;
-    
-    
-    
+
 }

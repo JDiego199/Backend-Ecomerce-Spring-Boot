@@ -50,15 +50,13 @@ public class Ordenes {
     @Temporal(TemporalType.DATE)
     private Calendar fecha;
 
-    @OneToMany(mappedBy = "ordenes", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany()
     private List<Orden_detalles> orden_detalles;
 
     @ManyToOne()
-    @JoinColumn(name = "repartidor_id")
     private Repartidor repartidor;
 
     @ManyToOne()
-    @JoinColumn(name = "cliente_id")
     private Cliente_persona cliente_persona;
 
 }

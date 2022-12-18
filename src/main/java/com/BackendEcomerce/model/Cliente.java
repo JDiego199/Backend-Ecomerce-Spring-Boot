@@ -64,18 +64,14 @@ public class Cliente {
 	private String nombre_usuario;
     
      
-    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
-    @JsonIgnore
-    @PrimaryKeyJoinColumn
-    private Cliente_empresa cliente_empresa;
+  //  @OneToOne()
+  //  private Cliente_empresa cliente_empresa;
     
-    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
-    @JsonIgnore
-    @PrimaryKeyJoinColumn
-    private Cliente_persona cliente_persona;
+    //@OneToOne()
+   // private Cliente_persona cliente_persona;
      
     
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @OneToMany()
     private List<Direccion> direccion;
 
 

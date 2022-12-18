@@ -12,9 +12,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -55,10 +57,10 @@ public class ClienteController {
 		return clienteService.findAll();
 	}
 	
-	/*@DeleteMapping ("/producto/{id}")
+	@DeleteMapping ("/cliente/{id}")
 	public void eliminar(@PathVariable Integer id){
-		productoService.delete(id);
-	}*/
+		clienteService.delete(id);
+	}
 	
         //get una cuenta
 	@GetMapping ("/cliente/{id}")
@@ -66,18 +68,19 @@ public class ClienteController {
 		return clienteService.findById(id);
 	}
 	
-       /* @PutMapping ("/producto/{id}")
-	public Producto modificar (@RequestBody Producto producto, @PathVariable Integer id){
+        @PutMapping ("/cliente/{id}")
+	public Cliente modificar (@RequestBody Cliente cliente, @PathVariable Integer id){
 		
-                Producto productoActual = productoService.findById(id);
-                productoActual.setCantidad(producto.getCantidad());
-                productoActual.setDescripcion(producto.getDescripcion());
-                productoActual.setDescuento(producto.getDescuento());
-                productoActual.setPrecio(producto.getPrecio());
-                productoActual.setNombre(producto.getNombre());
-                productoActual.setPrecio_fabrica(producto.getPrecio_fabrica());
-                productoActual.setFecha_registro(producto.getFecha_registro());
+                Cliente clientetoActual = clienteService.findById(id);
+                clientetoActual.setDireccion(cliente.getDireccion());
+                clientetoActual.setContrasena(cliente.getContrasena());
+                clientetoActual.setEmail(cliente.getEmail());
+                clientetoActual.setFecha_nacimient(cliente.getFecha_nacimient());
+                clientetoActual.setFecha_registro(cliente.getFecha_registro());
+                clientetoActual.setNombre(cliente.getNombre());
+                clientetoActual.setNombre_usuario(cliente.getNombre_usuario());
+                clientetoActual.setTelefono(cliente.getTelefono());
    
-                return productoService.save(productoActual);
-	}*/
+                return clienteService.save(clientetoActual);
+	}
 }

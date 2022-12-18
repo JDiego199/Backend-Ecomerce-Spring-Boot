@@ -43,7 +43,7 @@ public class Cliente_empersaController {
 		return cliente_empresaService.findAll();
 	}
 	
-	@DeleteMapping ("/producto/{id}")
+	@DeleteMapping ("/cliente_empresa/{id}")
 	public void eliminar(@PathVariable Integer id){
 		cliente_empresaService.delete(id);
 	}
@@ -54,7 +54,7 @@ public class Cliente_empersaController {
 		return cliente_empresaService.findById(id);
 	}
 	
-       /* @PutMapping ("/producto/{id}")
+       /* @PutMapping ("/cliente_empresa/{id}")
 	public Producto modificar (@RequestBody Producto producto, @PathVariable Integer id){
 		
                 Producto productoActual = productoService.findById(id);

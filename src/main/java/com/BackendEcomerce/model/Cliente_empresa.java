@@ -44,13 +44,10 @@ public class Cliente_empresa {
     // @ManyToOne()
     // @JoinColumn(name = "id_cliente")
     // private Cliente cliente;
-    @OneToMany(mappedBy = "cliente_empresa", cascade = CascadeType.ALL)
-    @JsonIgnore
+    @OneToMany()
     private List<Producto> producto;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "cliente_id")
+    @OneToOne()
     private Cliente cliente;
 
     public Cliente_empresa(Integer id_empresa, String dni_ruc, String razon_social, String nombre_comercial, int reputacion, Calendar fecha_registro, List<Producto> producto, Cliente cliente) {

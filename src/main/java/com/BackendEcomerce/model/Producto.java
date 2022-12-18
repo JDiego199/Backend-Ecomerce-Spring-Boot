@@ -62,12 +62,10 @@ public class Producto {
     @Temporal(TemporalType.DATE)
     private Calendar fecha_registro;
 
-    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany
     private List<Orden_detalles> Orden_detalles;
 
     @ManyToOne()
- 
-    @JoinColumn(name = "cliente_empresa_id")
     private Cliente_empresa cliente_empresa;
 
     public Producto(String nombre, String descripcion, float precio, float precio_fabrica, int cantidad, float descuento, Calendar fecha_registro, Cliente_empresa cliente_empresa) {

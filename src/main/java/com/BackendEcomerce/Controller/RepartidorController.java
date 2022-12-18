@@ -4,8 +4,10 @@
  */
 package com.BackendEcomerce.Controller;
 
-import com.BackendEcomerce.model.Direccion;
-import com.BackendEcomerce.service.DireccionService;
+import com.BackendEcomerce.model.Cliente_empresa;
+import com.BackendEcomerce.model.Repartidor;
+import com.BackendEcomerce.service.Cliente_empresaService;
+import com.BackendEcomerce.service.RepartidorService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,42 +23,39 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author mota1
  */
-
 @RestController
 @CrossOrigin(origins="*")
 @RequestMapping ("/api/")
-
-public class DireccionController {
-    
-        @Autowired
-	public DireccionService direccionService;
+public class RepartidorController {
+      @Autowired
+	public RepartidorService RepartidorService;
 	
         
         //Guardar
-	@PostMapping("/direccion")
-	public Direccion guardar (@RequestBody Direccion direccion){
+	@PostMapping("/repartidor")
+	public Repartidor guardar (@RequestBody Repartidor repartidor){
 		
-		return direccionService.save(direccion);                       	
+		return RepartidorService.save(repartidor);                       	
 	}
 	
 	//listar
-	@GetMapping("/direccion")
-	public List<Direccion> listar(){
-		return direccionService.findAll();
+	@GetMapping("/repartidor")
+	public List<Repartidor> listar(){
+		return RepartidorService.findAll();
 	}
 	
-	@DeleteMapping ("/direccion/{id}")
+	@DeleteMapping ("/repartidor/{id}")
 	public void eliminar(@PathVariable Integer id){
-		direccionService.delete(id);
+		RepartidorService.delete(id);
 	}
 	
         //get una cuenta
-	@GetMapping ("/direccion/{id}")
-	public Direccion getUnaAhorros(@PathVariable Integer id){
-		return direccionService.findById(id);
+	@GetMapping ("/repartidor/{id}")
+	public Repartidor getUnaAhorros(@PathVariable Integer id){
+		return RepartidorService.findById(id);
 	}
 	
-       /* @PutMapping ("/producto/{id}")
+       /* @PutMapping ("/repartidor/{id}")
 	public Producto modificar (@RequestBody Producto producto, @PathVariable Integer id){
 		
                 Producto productoActual = productoService.findById(id);
@@ -68,6 +67,6 @@ public class DireccionController {
                 productoActual.setPrecio_fabrica(producto.getPrecio_fabrica());
                 productoActual.setFecha_registro(producto.getFecha_registro());
    
-                return productoService.save(productoActual);
+                return cliente_empresaService.save(productoActual);
 	}*/
 }

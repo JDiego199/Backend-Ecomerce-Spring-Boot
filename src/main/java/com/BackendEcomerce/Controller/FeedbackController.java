@@ -4,8 +4,8 @@
  */
 package com.BackendEcomerce.Controller;
 
-import com.BackendEcomerce.model.Direccion;
-import com.BackendEcomerce.service.DireccionService;
+import com.BackendEcomerce.model.Feedback;
+import com.BackendEcomerce.service.FeedbackService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,39 +21,37 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author mota1
  */
-
 @RestController
 @CrossOrigin(origins="*")
 @RequestMapping ("/api/")
-
-public class DireccionController {
+public class FeedbackController {
     
-        @Autowired
-	public DireccionService direccionService;
+      @Autowired
+	public FeedbackService feedbackService;
 	
         
         //Guardar
-	@PostMapping("/direccion")
-	public Direccion guardar (@RequestBody Direccion direccion){
+	@PostMapping("/feedback")
+	public Feedback guardar (@RequestBody Feedback feedback){
 		
-		return direccionService.save(direccion);                       	
+		return feedbackService.save(feedback);                       	
 	}
 	
 	//listar
-	@GetMapping("/direccion")
-	public List<Direccion> listar(){
-		return direccionService.findAll();
+	@GetMapping("/feedback")
+	public List<Feedback> listar(){
+		return feedbackService.findAll();
 	}
 	
-	@DeleteMapping ("/direccion/{id}")
+	@DeleteMapping ("/feedback/{id}")
 	public void eliminar(@PathVariable Integer id){
-		direccionService.delete(id);
+		feedbackService.delete(id);
 	}
 	
         //get una cuenta
-	@GetMapping ("/direccion/{id}")
-	public Direccion getUnaAhorros(@PathVariable Integer id){
-		return direccionService.findById(id);
+	@GetMapping ("/feedback/{id}")
+	public Feedback getUnaAhorros(@PathVariable Integer id){
+		return feedbackService.findById(id);
 	}
 	
        /* @PutMapping ("/producto/{id}")
@@ -68,6 +66,7 @@ public class DireccionController {
                 productoActual.setPrecio_fabrica(producto.getPrecio_fabrica());
                 productoActual.setFecha_registro(producto.getFecha_registro());
    
-                return productoService.save(productoActual);
+                return cliente_empresaService.save(productoActual);
 	}*/
+    
 }
