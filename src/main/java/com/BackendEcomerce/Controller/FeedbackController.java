@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,19 +55,13 @@ public class FeedbackController {
 		return feedbackService.findById(id);
 	}
 	
-       /* @PutMapping ("/producto/{id}")
-	public Producto modificar (@RequestBody Producto producto, @PathVariable Integer id){
+        @PutMapping ("/feedback/{id}")
+	public Feedback modificar (@RequestBody Feedback feedback, @PathVariable Integer id){
 		
-                Producto productoActual = productoService.findById(id);
-                productoActual.setCantidad(producto.getCantidad());
-                productoActual.setDescripcion(producto.getDescripcion());
-                productoActual.setDescuento(producto.getDescuento());
-                productoActual.setPrecio(producto.getPrecio());
-                productoActual.setNombre(producto.getNombre());
-                productoActual.setPrecio_fabrica(producto.getPrecio_fabrica());
-                productoActual.setFecha_registro(producto.getFecha_registro());
+                Feedback Actual = feedbackService.findById(id);
+                Actual.setDescripcion(feedback.getDescripcion());
    
-                return cliente_empresaService.save(productoActual);
-	}*/
+                return feedbackService.save(Actual);
+	}
     
 }

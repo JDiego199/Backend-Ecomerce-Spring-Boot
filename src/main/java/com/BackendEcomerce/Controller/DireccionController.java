@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,18 +57,18 @@ public class DireccionController {
 		return direccionService.findById(id);
 	}
 	
-       /* @PutMapping ("/producto/{id}")
-	public Producto modificar (@RequestBody Producto producto, @PathVariable Integer id){
+        @PutMapping ("/direccion/{id}")
+	public Direccion modificar (@RequestBody Direccion direccion, @PathVariable Integer id){
 		
-                Producto productoActual = productoService.findById(id);
-                productoActual.setCantidad(producto.getCantidad());
-                productoActual.setDescripcion(producto.getDescripcion());
-                productoActual.setDescuento(producto.getDescuento());
-                productoActual.setPrecio(producto.getPrecio());
-                productoActual.setNombre(producto.getNombre());
-                productoActual.setPrecio_fabrica(producto.getPrecio_fabrica());
-                productoActual.setFecha_registro(producto.getFecha_registro());
+                Direccion Actual = direccionService.findById(id);
+                Actual.setCalle(direccion.getCalle());
+                Actual.setCiudad(direccion.getCiudad());
+                Actual.setCodigo_postal(direccion.getCodigo_postal());
+                Actual.setDireccion(direccion.getDireccion());
+                Actual.setFecha(direccion.getFecha());
+                Actual.setProvincia(direccion.getProvincia());
+    
    
-                return productoService.save(productoActual);
-	}*/
+                return direccionService.save(Actual);
+	}
 }

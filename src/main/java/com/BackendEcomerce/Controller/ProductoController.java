@@ -57,7 +57,7 @@ public class ProductoController {
 		return productoService.findById(id);
 	}
 	
-       /* @PutMapping ("/producto/{id}")
+        @PutMapping ("/producto/{id}")
 	public Producto modificar (@RequestBody Producto producto, @PathVariable Integer id){
 		
                 Producto productoActual = productoService.findById(id);
@@ -70,6 +70,6 @@ public class ProductoController {
                 productoActual.setFecha_registro(producto.getFecha_registro());
    
                 return productoService.save(productoActual);
-	}*/
+	}
     
 }
