@@ -4,26 +4,16 @@
  */
 package com.BackendEcomerce.model;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import jakarta.persistence.*;
+
 import java.util.Calendar;
 import java.util.List;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- *
  * @author mota1
  */
 @Getter
@@ -33,30 +23,30 @@ import lombok.Setter;
 @Table(name = "ordenes")
 public class Ordenes {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_orden;
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Integer id_orden;
 
-    @Column(name = "numero_factura", nullable = false)
-    private int numero_factura;
-    @Column(name = "subTotal", nullable = false)
-    private float subTotal;
-    @Column(name = "total", nullable = false)
-    private float total;
-    @Column(name = "iva", nullable = false)
-    private float iva;
+   @Column(name = "numero_factura", nullable = false)
+   private int numero_factura;
+   @Column(name = "subTotal", nullable = false)
+   private float subTotal;
+   @Column(name = "total", nullable = false)
+   private float total;
+   @Column(name = "iva", nullable = false)
+   private float iva;
 
-    @Column(name = "fecha", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Calendar fecha;
+   @Column(name = "fecha", nullable = false)
+   @Temporal(TemporalType.DATE)
+   private Calendar fecha;
 
-    @OneToMany()
-    private List<Orden_detalles> orden_detalles;
+   @OneToMany(mappedBy = "ordenes", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+   private List<Orden_detalles> orden_detalles;
 
-    @ManyToOne()
-    private Repartidor repartidor;
+   @ManyToOne()
+   private Repartidor repartidor;
 
-    @ManyToOne()
-    private Cliente_persona cliente_persona;
+   @ManyToOne()
+   private Cliente_persona cliente_persona;
 
 }

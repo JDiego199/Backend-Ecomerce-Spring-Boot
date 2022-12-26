@@ -9,10 +9,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- *
  * @author mota1
  */
 @Repository
-public interface RepartidorRepository  extends CrudRepository<Repartidor, Integer> {
-    
+public interface RepartidorRepository extends CrudRepository<Repartidor, Integer> {
+
 }

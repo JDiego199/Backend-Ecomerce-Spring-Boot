@@ -8,9 +8,8 @@ import com.BackendEcomerce.model.Producto;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *
  * @author mota1
  */
-public interface ProductoDAO  extends CrudRepository<Producto, Integer>{
-    
+public interface ProductoDAO extends CrudRepository<Producto, Integer> {
+
 }

@@ -5,18 +5,18 @@
 package com.BackendEcomerce.service;
 
 import com.BackendEcomerce.model.Repartidor;
+
 import java.util.List;
 
 /**
- *
  * @author mota1
  */
 public interface RepartidorService {
-        public List<Repartidor> findAll();
+   public List<Repartidor> findAll();
 
-    public Repartidor save(Repartidor repartidor);
+   public Repartidor save(Repartidor repartidor);
 
-    public Repartidor findById(Integer id);
+   public Repartidor findById(Integer id);
 
-    public void delete(Integer id);
+   public void delete(Integer id);
 }

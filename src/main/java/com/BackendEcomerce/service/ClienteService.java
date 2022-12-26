@@ -6,17 +6,20 @@ package com.BackendEcomerce.service;
 
 import com.BackendEcomerce.model.Cliente;
 import com.BackendEcomerce.model.Producto;
+
 import java.util.List;
 
 /**
- *
  * @author mota1
  */
 public interface ClienteService {
 
-         public List<Cliente> findAll();
-    public Cliente save(Cliente cliente);
-    public Cliente findById(Integer id);
-        public void delete(Integer id);
-      
+   public List<Cliente> findAll();
+
+   public Cliente save(Cliente cliente);
+
+   public Cliente findById(Integer id);
+
+   public void delete(Integer id);
+
 }

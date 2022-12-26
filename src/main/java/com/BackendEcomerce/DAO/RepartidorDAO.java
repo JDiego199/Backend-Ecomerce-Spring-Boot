@@ -9,9 +9,8 @@ import com.BackendEcomerce.model.Repartidor;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *
  * @author mota1
  */
-public interface RepartidorDAO  extends CrudRepository<Repartidor, Integer> {
-    
+public interface RepartidorDAO extends CrudRepository<Repartidor, Integer> {
+
 }

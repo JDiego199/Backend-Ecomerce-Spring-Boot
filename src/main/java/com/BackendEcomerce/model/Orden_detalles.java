@@ -14,13 +14,14 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+
 import java.util.Calendar;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- *
  * @author mota1
  */
 @Getter
@@ -30,25 +31,27 @@ import lombok.Setter;
 @Table(name = "ordendes_detalles")
 public class Orden_detalles {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_orden_detalle;
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Integer id_orden_detalle;
 
-    @Column(name = "cantidad", nullable = false)
-    private String cantidad;
-    @Column(name = "descuento", nullable = false)
-    private float descuento;
-    @Column(name = "subtotal", nullable = false)
-    private float subtotal;
+   @Column(name = "cantidad", nullable = false)
+   private String cantidad;
 
-    @Column(name = "fecha_orden", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Calendar fecha_orden;
+   @Column(name = "descuento", nullable = false)
+   private float descuento;
 
-    @ManyToOne()
-    private Ordenes ordenes;
+   @Column(name = "subtotal", nullable = false)
+   private float subtotal;
 
-    @ManyToOne()
-    private Producto producto;
+   @Column(name = "fecha_orden", nullable = false)
+   @Temporal(TemporalType.DATE)
+   private Calendar fecha_orden;
+
+   @ManyToOne()
+   private Ordenes ordenes;
+
+   @ManyToOne()
+   private Producto producto;
 
 }

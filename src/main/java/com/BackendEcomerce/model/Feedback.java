@@ -11,10 +11,8 @@ import lombok.Setter;
 
 
 /**
- *
  * @author craxz
  */
-
 
 
 @PersistenceContext
@@ -22,25 +20,23 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table (name = "Feedback")
+@Table(name = "Feedback")
 public class Feedback {
-    
-    @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_feedback;
 
-    
-    @Column(name = "descripcion", nullable = false)
-    private String descripcion;
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Integer id_feedback;
 
 
+   @Column(name = "descripcion", nullable = false)
+   private String descripcion;
 
-    @ManyToOne()
-    private Producto producto;
-    
-    @ManyToOne()
-    private Cliente_persona cliente_persona;
-    
-    
+   @ManyToOne()
+   private Producto producto;
+
+   @ManyToOne()
+   private Cliente_persona cliente_persona;
+
+
 }
 

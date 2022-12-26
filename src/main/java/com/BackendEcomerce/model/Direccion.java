@@ -17,14 +17,15 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+
 import java.util.Calendar;
 import java.util.List;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- *
  * @author fabricio
  */
 @PersistenceContext
@@ -35,41 +36,40 @@ import lombok.Setter;
 @Table(name = "direccion")
 public class Direccion {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_direccion;
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Integer id_direccion;
 
-    @Column(name = "direccion", nullable = false)
-    private String direccion;
-    @Column(name = "ciudad", nullable = false)
-    private String ciudad;
-    @Column(name = "provincia", nullable = false)
-    private String provincia;
+   @Column(name = "direccion", nullable = false)
+   private String direccion;
+   @Column(name = "ciudad", nullable = false)
+   private String ciudad;
+   @Column(name = "provincia", nullable = false)
+   private String provincia;
 
-    @Column(name = "calle", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private String calle;
+   @Column(name = "calle", nullable = false)
+   @Temporal(TemporalType.DATE)
+   private String calle;
 
-    @Column(name = "codigo_postal", nullable = false)
-    private String codigo_postal;
+   @Column(name = "codigo_postal", nullable = false)
+   private String codigo_postal;
 
-    @Column(name = "fecha_registro", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Calendar fecha;
+   @Column(name = "fecha_registro", nullable = false)
+   @Temporal(TemporalType.DATE)
+   private Calendar fecha;
 
-    @ManyToOne()
-    private Cliente cliente;
+   @ManyToOne()
+   private Cliente cliente;
 
-    public Direccion(String direccion, String ciudad, String provincia, String calle, String codigo_postal, Calendar fecha, Cliente cliente) {
-        this.direccion = direccion;
-        this.ciudad = ciudad;
-        this.provincia = provincia;
-        this.calle = calle;
-        this.codigo_postal = codigo_postal;
-        this.fecha = fecha;
-        this.cliente = cliente;
-    }
-    
-    
-    
+   public Direccion(String direccion, String ciudad, String provincia, String calle, String codigo_postal, Calendar fecha, Cliente cliente) {
+      this.direccion = direccion;
+      this.ciudad = ciudad;
+      this.provincia = provincia;
+      this.calle = calle;
+      this.codigo_postal = codigo_postal;
+      this.fecha = fecha;
+      this.cliente = cliente;
+   }
+
+
 }
