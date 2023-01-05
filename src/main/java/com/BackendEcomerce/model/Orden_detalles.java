@@ -27,7 +27,7 @@ public class Orden_detalles {
     private Integer id_orden_detalle;
 
     @Column(name = "cantidad", nullable = false)
-    private String cantidad;
+    private int cantidad;
     @Column(name = "descuento", nullable = false)
     private float descuento;
     @Column(name = "subtotal", nullable = false)

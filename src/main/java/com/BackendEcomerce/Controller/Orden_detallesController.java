@@ -4,8 +4,12 @@
  */
 package com.BackendEcomerce.Controller;
 
+import com.BackendEcomerce.DAO.ValidacionOrden;
+import com.BackendEcomerce.LogicaNegocio.Validaciones.ValidacionOrden_detalles;
 import com.BackendEcomerce.model.Orden_detalles;
+import com.BackendEcomerce.model.Producto;
 import com.BackendEcomerce.service.Orden_detallesService;
+import com.BackendEcomerce.service.ProductoService;
 
 import java.util.List;
 
@@ -30,12 +34,31 @@ public class Orden_detallesController {
    @Autowired
    public Orden_detallesService Orden_detallesService;
 
+   
+ public ValidacionOrden vali = new ValidacionOrden();
    //Guardar
    @PostMapping("/orden_detalles")
-   public Orden_detalles guardar(@RequestBody Orden_detalles orden_detalles) {
-
-      return Orden_detallesService.save(orden_detalles);
-   }
+     public String guardar(@RequestBody Orden_detalles orden_detalles) {
+         
+         if(vali.validarCantidad(1)){
+                 Orden_detallesService.save(orden_detalles);
+          return "orden creada";
+      }else{return "articulo no existe";}
+       
+      }
+   
+  /* public String guardar(@RequestBody Orden_detalles orden_detalles) {
+       
+      Producto prod = new Producto();
+      prod =  productoservicie.findById(orden_detalles.getProducto().getId_producto());
+      
+      if(prod.getCantidad() >= orden_detalles.getCantidad()){
+          Orden_detallesService.save(orden_detalles);
+          return "orden creada";
+      }else{return "articulo no existe";}
+      
+      
+   }*/
 
    //listar
    @GetMapping("/orden_detalles")

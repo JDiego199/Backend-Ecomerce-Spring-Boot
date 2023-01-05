@@ -90,20 +90,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(handler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/cliente")
-                .authenticated()
                 
-                	.antMatchers(HttpMethod.POST, "/api/**").permitAll()
-				;
-             
-                                
-               /* .antMatchers(HttpMethod.GET, "/api/**")
-                .permitAll()
-                .antMatchers(HttpMethod.POST, "/api/**")
-                .permitAll()
+                   .antMatchers(HttpMethod.POST, "/api/**")
+                .permitAll()   
+          
                 .antMatchers("/api/**")
-                .authenticated()
-                .anyRequest().authenticated();*/
+                .permitAll()
+                .anyRequest().authenticated();
 
         httpSecurity.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

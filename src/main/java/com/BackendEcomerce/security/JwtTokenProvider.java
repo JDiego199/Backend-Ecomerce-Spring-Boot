@@ -36,7 +36,7 @@ public class JwtTokenProvider {
         Claims claims = Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(token).getBody();
         return Integer.parseInt(claims.getSubject());
     }
-
+/*
     public boolean validateToken(String token) {
     try {
       Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(token);
@@ -46,7 +46,7 @@ public class JwtTokenProvider {
             return false;
     }
   }
-    /*
+    */
     boolean validateToken(String token) {
         try {
             Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(token);
@@ -62,7 +62,7 @@ public class JwtTokenProvider {
         }catch (IllegalArgumentException e) {
             return false;
         }
-    }*/
+    }
     
 
     private boolean isTokenExpired(String token) {
