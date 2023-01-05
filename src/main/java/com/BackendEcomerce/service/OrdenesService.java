@@ -19,4 +19,7 @@ public interface OrdenesService {
    public Ordenes findById(Integer id);
 
    public void delete(Integer id);
+   
+   public void confirmarOrder(Integer id, Integer idprod);
+   
 }

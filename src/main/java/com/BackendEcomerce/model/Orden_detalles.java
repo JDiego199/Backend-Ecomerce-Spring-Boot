@@ -7,6 +7,7 @@ package com.BackendEcomerce.model;
 import javax.persistence.*;
 
 import java.util.Calendar;
+import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -37,8 +38,8 @@ public class Orden_detalles {
     @Temporal(TemporalType.DATE)
     private Calendar fecha_orden;
 
-    @ManyToOne()
-    private Ordenes ordenes;
+     @OneToMany()
+    private List<Ordenes> Ordenes;
 
     @ManyToOne()
     private Producto producto;

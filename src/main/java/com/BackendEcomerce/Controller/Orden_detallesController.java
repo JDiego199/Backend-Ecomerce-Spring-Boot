@@ -4,7 +4,7 @@
  */
 package com.BackendEcomerce.Controller;
 
-import com.BackendEcomerce.DAO.ValidacionOrden;
+
 import com.BackendEcomerce.LogicaNegocio.Validaciones.ValidacionOrden_detalles;
 import com.BackendEcomerce.model.Orden_detalles;
 import com.BackendEcomerce.model.Producto;
@@ -40,11 +40,11 @@ public class Orden_detallesController {
  
    //Guardar
    @PostMapping("/orden_detalles")
-     public String guardar(@RequestBody Orden_detalles orden_detalles) {
+     public boolean guardar(@RequestBody Orden_detalles orden_detalles) {
          if(productoservice.validarStoc(orden_detalles.getCantidad(),orden_detalles.getProducto().getId_producto())){
                  Orden_detallesService.save(orden_detalles);
-          return "orden creada";
-      }else{return "articulo no existe";}
+          return true;
+      }else{return false;}
        
       }
    

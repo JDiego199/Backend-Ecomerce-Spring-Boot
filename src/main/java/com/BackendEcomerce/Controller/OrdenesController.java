@@ -5,7 +5,9 @@
 package com.BackendEcomerce.Controller;
 
 
+import com.BackendEcomerce.model.Orden_detalles;
 import com.BackendEcomerce.model.Ordenes;
+import com.BackendEcomerce.service.Orden_detallesService;
 import com.BackendEcomerce.service.OrdenesService;
 
 import java.util.List;
@@ -30,12 +32,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrdenesController {
    @Autowired
    public OrdenesService OrdenesService;
+    @Autowired
+   public Orden_detallesService orden_detalles;
 
    //Guardar
    @PostMapping("/ordenes")
    public Ordenes guardar(@RequestBody Ordenes ordenes) {
 
+        OrdenesService.confirmarOrder(ordenes.getOrdenes_detalles().getProducto().getId_producto(), ordenes.getOrdenes_detalles().getCantidad());
       return OrdenesService.save(ordenes);
+      
+     //Orden_detalles orden = new Orden_detalles();
+      
+     
    }
 
    //listar
@@ -67,5 +76,7 @@ public class OrdenesController {
 
       return OrdenesService.save(Actual);
    }
+   
+   
 
 }

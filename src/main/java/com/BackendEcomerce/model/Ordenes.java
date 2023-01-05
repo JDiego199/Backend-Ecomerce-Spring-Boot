@@ -41,8 +41,10 @@ public class Ordenes {
     @Temporal(TemporalType.DATE)
     private Calendar fecha;
 
-    @OneToMany()
-    private List<Orden_detalles> orden_detalles;
+ 
+    
+      @ManyToOne()
+    private Orden_detalles ordenes_detalles;
 
     @ManyToOne()
     private Repartidor repartidor;

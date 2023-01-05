@@ -5,7 +5,9 @@
 package com.BackendEcomerce.service;
 
 import com.BackendEcomerce.Repository.OrdenesRepository;
+import com.BackendEcomerce.Repository.ProductoRepository;
 import com.BackendEcomerce.model.Ordenes;
+import com.BackendEcomerce.model.Producto;
 
 import java.util.List;
 
@@ -21,31 +23,55 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class OrdenesServiceImplement implements OrdenesService {
 
-   @Autowired
-   private OrdenesRepository ordenesRepository;
+    @Autowired
+    private OrdenesRepository ordenesRepository;
+    @Autowired
+    private ProductoRepository productoRepository;
 
-   @Override
-   @Transactional(readOnly = true)
-   public List<Ordenes> findAll() {
-      return (List<Ordenes>) ordenesRepository.findAll();
-   }
+    @Override
+    @Transactional(readOnly = true)
+    public List<Ordenes> findAll() {
+        return (List<Ordenes>) ordenesRepository.findAll();
+    }
 
-   @Override
-   @Transactional(readOnly = false)
-   public Ordenes save(Ordenes ordenes) {
-      return ordenesRepository.save(ordenes);
-   }
+    @Override
+    @Transactional(readOnly = false)
+    public Ordenes save(Ordenes ordenes) {
+        return ordenesRepository.save(ordenes);
+    }
 
-   @Override
-   @Transactional(readOnly = true)
-   public Ordenes findById(Integer id) {
-      return ordenesRepository.findById(id).orElse(null);
-   }
+    @Override
+    @Transactional(readOnly = true)
+    public Ordenes findById(Integer id) {
+        return ordenesRepository.findById(id).orElse(null);
+    }
 
-   @Override
-   @Transactional(readOnly = false)
-   public void delete(Integer id) {
-      ordenesRepository.deleteById(id);
-   }
+    @Override
+    @Transactional(readOnly = false)
+    public void delete(Integer id) {
+        ordenesRepository.deleteById(id);
+    }
+
+    public void confirmarOrder(Integer id, Integer idprod) {
+
+        //obtener id del producto y su cantidad
+        Producto productoActual = new Producto();
+        productoActual = productoRepository.findById(id).orElse(null);
+
+        //Producto prodNuevo = productoService.findById(id);
+        productoActual.setCantidad(productoActual.getCantidad() - idprod);
+        /*   productoActual.setDescripcion(productoActual.getDescripcion());
+      productoActual.setDescuento(productoActual.getDescuento());
+      productoActual.setPrecio(productoActual.getPrecio());
+      productoActual.setNombre(productoActual.getNombre());
+      productoActual.setPrecio_fabrica(productoActual.getPrecio_fabrica());
+      productoActual.setFecha_registro(productoActual.getFecha_registro());*/
+
+        productoRepository.save(productoActual);
+
+      //  ordenesRepository.findById(id).orElse(null);
+
+        //llamaar servicio en producto que reciviendo el id y cantidad actualice la bd
+    }
 
 }
