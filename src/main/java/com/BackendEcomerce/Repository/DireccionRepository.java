@@ -9,11 +9,10 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- *
  * @author mota1
  */
 @Repository
-public interface DireccionRepository  extends CrudRepository<Direccion, Integer>{
-    
-    
+public interface DireccionRepository extends CrudRepository<Direccion, Integer> {
+
+
 }

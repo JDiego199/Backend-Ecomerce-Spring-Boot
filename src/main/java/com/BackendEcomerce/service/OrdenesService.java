@@ -5,18 +5,18 @@
 package com.BackendEcomerce.service;
 
 import com.BackendEcomerce.model.Ordenes;
+
 import java.util.List;
 
 /**
- *
  * @author mota1
  */
 public interface OrdenesService {
-        public List<Ordenes> findAll();
+   public List<Ordenes> findAll();
 
-    public Ordenes save(Ordenes ordenes);
+   public Ordenes save(Ordenes ordenes);
 
-    public Ordenes findById(Integer id);
+   public Ordenes findById(Integer id);
 
-    public void delete(Integer id);
+   public void delete(Integer id);
 }

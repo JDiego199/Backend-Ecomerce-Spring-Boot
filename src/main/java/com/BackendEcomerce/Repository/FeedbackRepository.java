@@ -9,10 +9,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- *
  * @author mota1
  */
 @Repository
-public interface FeedbackRepository  extends CrudRepository<Feedback, Integer> {
-    
+public interface FeedbackRepository extends CrudRepository<Feedback, Integer> {
+
 }

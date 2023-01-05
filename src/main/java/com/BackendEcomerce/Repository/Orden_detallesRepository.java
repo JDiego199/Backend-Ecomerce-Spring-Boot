@@ -9,10 +9,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- *
  * @author mota1
  */
 @Repository
-public interface Orden_detallesRepository  extends CrudRepository<Orden_detalles, Integer> {
-    
+public interface Orden_detallesRepository extends CrudRepository<Orden_detalles, Integer> {
+
 }

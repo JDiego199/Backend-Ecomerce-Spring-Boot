@@ -7,7 +7,9 @@ package com.BackendEcomerce.Controller;
 
 import com.BackendEcomerce.model.Ordenes;
 import com.BackendEcomerce.service.OrdenesService;
+
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,52 +22,50 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
  * @author mota1
  */
 @RestController
-@CrossOrigin(origins="*")
-@RequestMapping ("/api/")
+@CrossOrigin(origins = "*")
+@RequestMapping("/api/")
 public class OrdenesController {
-      @Autowired
-	public OrdenesService OrdenesService;
-	
-        
-        //Guardar
-	@PostMapping("/ordenes")
-	public Ordenes guardar (@RequestBody Ordenes ordenes){
-		
-		return OrdenesService.save(ordenes);                       	
-	}
-	
-	//listar
-	@GetMapping("/ordenes")
-	public List<Ordenes> listar(){
-		return OrdenesService.findAll();
-	}
-	
-	@DeleteMapping ("/ordenes/{id}")
-	public void eliminar(@PathVariable Integer id){
-		OrdenesService.delete(id);
-	}
-	
-        //get una cuenta
-	@GetMapping ("/ordenes/{id}")
-	public Ordenes getUnaAhorros(@PathVariable Integer id){
-		return OrdenesService.findById(id);
-	}
-	
-        @PutMapping ("/ordenes/{id}")
-	public Ordenes modificar (@RequestBody Ordenes ordenes, @PathVariable Integer id){
-		
-                Ordenes Actual = OrdenesService.findById(id);
-                Actual.setFecha(ordenes.getFecha());
-                Actual.setIva(ordenes.getIva());
-                Actual.setNumero_factura(ordenes.getNumero_factura());
-                Actual.setSubTotal(ordenes.getSubTotal());
-                Actual.setTotal(ordenes.getTotal());
-   
-                return OrdenesService.save(Actual);
-	}
-    
+   @Autowired
+   public OrdenesService OrdenesService;
+
+   //Guardar
+   @PostMapping("/ordenes")
+   public Ordenes guardar(@RequestBody Ordenes ordenes) {
+
+      return OrdenesService.save(ordenes);
+   }
+
+   //listar
+   @GetMapping("/ordenes")
+   public List<Ordenes> listar() {
+      return OrdenesService.findAll();
+   }
+
+   @DeleteMapping("/ordenes/{id}")
+   public void eliminar(@PathVariable Integer id) {
+      OrdenesService.delete(id);
+   }
+
+   //get una cuenta
+   @GetMapping("/ordenes/{id}")
+   public Ordenes getUnaAhorros(@PathVariable Integer id) {
+      return OrdenesService.findById(id);
+   }
+
+   @PutMapping("/ordenes/{id}")
+   public Ordenes modificar(@RequestBody Ordenes ordenes, @PathVariable Integer id) {
+
+      Ordenes Actual = OrdenesService.findById(id);
+      Actual.setFecha(ordenes.getFecha());
+      Actual.setIva(ordenes.getIva());
+      Actual.setNumero_factura(ordenes.getNumero_factura());
+      Actual.setSubTotal(ordenes.getSubTotal());
+      Actual.setTotal(ordenes.getTotal());
+
+      return OrdenesService.save(Actual);
+   }
+
 }
