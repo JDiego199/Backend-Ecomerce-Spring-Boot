@@ -33,31 +33,31 @@ import org.springframework.web.bind.annotation.RestController;
 public class Orden_detallesController {
    @Autowired
    public Orden_detallesService Orden_detallesService;
-
+      @Autowired
+   public ProductoService productoservice;
    
- public ValidacionOrden vali = new ValidacionOrden();
+   //ValidacionOrden_detalles
+ 
    //Guardar
    @PostMapping("/orden_detalles")
      public String guardar(@RequestBody Orden_detalles orden_detalles) {
-         
-         if(vali.validarCantidad(1)){
+         if(productoservice.validarStoc(orden_detalles.getCantidad(),orden_detalles.getProducto().getId_producto())){
                  Orden_detallesService.save(orden_detalles);
           return "orden creada";
       }else{return "articulo no existe";}
        
       }
    
-  /* public String guardar(@RequestBody Orden_detalles orden_detalles) {
+   /*
+   public String guardar(@RequestBody Orden_detalles orden_detalles) {
        
       Producto prod = new Producto();
-      prod =  productoservicie.findById(orden_detalles.getProducto().getId_producto());
+      prod =  productoservice.findById(orden_detalles.getProducto().getId_producto());
       
       if(prod.getCantidad() >= orden_detalles.getCantidad()){
           Orden_detallesService.save(orden_detalles);
           return "orden creada";
       }else{return "articulo no existe";}
-      
-      
    }*/
 
    //listar

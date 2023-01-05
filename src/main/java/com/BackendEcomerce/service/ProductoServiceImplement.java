@@ -54,6 +54,7 @@ public class ProductoServiceImplement implements ProductoService {
    @Override
    @Transactional(readOnly = true)
    public Producto findById(Integer id) {
+       
       return productoRepository.findById(id).orElse(null);
    }
 
@@ -61,5 +62,13 @@ public class ProductoServiceImplement implements ProductoService {
    @Transactional(readOnly = false)
    public void delete(Integer id) {
       productoRepository.deleteById(id);
+   }
+   
+   @Override
+   public boolean validarStoc(Integer cantidad, Integer id){
+   
+     Producto prod = new Producto();
+      prod = productoRepository.findById(id).orElse(null);
+      return prod.getCantidad() >= cantidad;
    }
 }

@@ -7,27 +7,28 @@ package com.BackendEcomerce.LogicaNegocio.Validaciones;
 import com.BackendEcomerce.model.Producto;
 import com.BackendEcomerce.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
  * @author mota1
  */
 
-public class ValidacionOrden_detalles {
+@Service
+public class ValidacionOrden_detalles  {
     
-   @Autowired
-   public ProductoService productoservicie;
+    
+  @Autowired
+  public ProductoService productoservicie;
        
-       public boolean validarCantidad(int cantidad) {
+      public boolean validarCantidad(int cantidad) {
        
       Producto prod = new Producto();
       prod =  productoservicie.findById(cantidad);
       
-      if(prod.getCantidad() >= cantidad){
-         
-          return true;
-      }else{return false;}
+       return prod.getCantidad() >= cantidad;
       
       
    }

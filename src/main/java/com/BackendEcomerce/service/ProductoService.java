@@ -22,5 +22,7 @@ public interface ProductoService {
    public Producto findById(Integer id);
 
    public void delete(Integer id);
+   
+  public boolean validarStoc(Integer catindad, Integer id);
 
 }
