@@ -4,7 +4,7 @@
  */
 package com.BackendEcomerce.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.Calendar;
 import java.util.List;

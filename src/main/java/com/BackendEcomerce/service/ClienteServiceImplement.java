@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author mota1
  */
+
 @Service
 @RequiredArgsConstructor
 public class ClienteServiceImplement implements ClienteService{
@@ -62,4 +63,11 @@ public class ClienteServiceImplement implements ClienteService{
     {
         clienteRepository.deleteById(id);
     }
+    
+    
+    @Override
+    public Cliente getByUserName(String nombre_usuario) {
+        return clienteRepository.findByUserName(nombre_usuario);
+   }
+
 }

@@ -6,7 +6,6 @@ package com.BackendEcomerce.Controller;
 
 import com.BackendEcomerce.model.Cliente;
 import com.BackendEcomerce.service.ClienteService;
-import com.BackendEcomerce.service.ProductoService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/")
 @RequiredArgsConstructor
 public class ClienteController {
-        @Autowired
+        
+    @Autowired
     public ClienteService clienteService;
 
  /*   @GetMapping("/cliente")
@@ -73,12 +73,12 @@ public class ClienteController {
 		
                 Cliente clientetoActual = clienteService.findById(id);
                 clientetoActual.setDireccion(cliente.getDireccion());
-                clientetoActual.setContrasena(cliente.getContrasena());
+                clientetoActual.setPassword(cliente.getPassword());
                 clientetoActual.setEmail(cliente.getEmail());
                 clientetoActual.setFecha_nacimient(cliente.getFecha_nacimient());
                 clientetoActual.setFecha_registro(cliente.getFecha_registro());
                 clientetoActual.setNombre(cliente.getNombre());
-                clientetoActual.setNombre_usuario(cliente.getNombre_usuario());
+                clientetoActual.setUserName(cliente.getUserName());
                 clientetoActual.setTelefono(cliente.getTelefono());
    
                 return clienteService.save(clientetoActual);

@@ -5,23 +5,10 @@
 package com.BackendEcomerce.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.PrimaryKeyJoinColumn;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+
 import java.util.Calendar;
 import java.util.List;
+import javax.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -42,26 +29,28 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_cliente;
 	
-    @Column(name = "nombre", nullable = false)
+    @Column(name = "nombre", nullable = true)
 	private String nombre;
-    @Column(name = "email", nullable = false)
+    
+    @Column(name = "email", nullable = true)
 	private String email;
-    @Column(name = "telefono", nullable = false)
+    
+    @Column(name = "telefono", nullable = true)
 	private String telefono;
 
-    @Column(name = "fecha_nacimient", nullable = false)
+    @Column(name = "fecha_nacimient", nullable = true)
     @Temporal(TemporalType.DATE)
 	private Calendar fecha_nacimient;   
     
-    @Column(name = "fecha_registro", nullable = false)
+    @Column(name = "fecha_registro", nullable = true)
     @Temporal(TemporalType.DATE)
 	private Calendar fecha_registro;     
     
-    @Column(name = "contrasena", nullable = false)
-	private String contrasena;
+    @Column(name = "password", nullable = false)
+	private String password;
     
-     @Column(name = "nombre_usuario", nullable = false)
-	private String nombre_usuario;
+     @Column(name = "userName", nullable = false)
+	private String userName;
     
      
   //  @OneToOne()
@@ -75,14 +64,14 @@ public class Cliente {
     private List<Direccion> direccion;
 
 
-    public Cliente(String nombre, String email, String telefono, Calendar fecha_nacimient, Calendar fecha_registro, String contrasena, String nombre_usuario, List<Direccion> direccion) {
+    public Cliente(String nombre, String email, String telefono, Calendar fecha_nacimient, Calendar fecha_registro, String password, String userName, List<Direccion> direccion) {
         this.nombre = nombre;
         this.email = email;
         this.telefono = telefono;
         this.fecha_nacimient = fecha_nacimient;
         this.fecha_registro = fecha_registro;
-        this.contrasena = contrasena;
-        this.nombre_usuario = nombre_usuario;
+        this.password = password;
+        this.userName = userName;
         this.direccion = direccion;
     }
     
