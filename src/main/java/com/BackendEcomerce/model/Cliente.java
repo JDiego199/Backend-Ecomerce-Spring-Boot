@@ -7,7 +7,9 @@ package com.BackendEcomerce.model;
 
 
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -51,7 +53,14 @@ public class Cliente {
     
      @Column(name = "userName", nullable = false)
 	private String userName;
-    
+    @ManyToMany
+    @JoinTable(
+        name = "users_roles",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new HashSet<>();
+     
      
   //  @OneToOne()
   //  private Cliente_empresa cliente_empresa;
