@@ -57,9 +57,11 @@ public class AuthController {
     public String login(@RequestBody ClienteLoginRequest loginRequest) {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginRequest.getUserName(), loginRequest.getPassword());
         Authentication auth = authenticationManager.authenticate(authenticationToken);
-        SecurityContextHolder.getContext().setAuthentication(auth);
-        String jwtToken = jwtTokenProvider.generateJwtToken(auth);
+        
         Cliente user = userService.getByUserName(loginRequest.getUserName());
+        SecurityContextHolder.getContext().setAuthentication(auth);
+        String jwtToken = jwtTokenProvider.generateAccessToken(user);
+        //Cliente user = userService.getByUserName(loginRequest.getUserName());
        // sendEmailService.sendEmails(user.getEMail(), ECommerceMessage.LOGIN_BODY, ECommerceMessage.LOGIN_TOPIC);
         return "Bearer " + jwtToken;
     }
