@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-
+ /*
 @Component
 public class CreateRoles implements CommandLineRunner {
 
-    @Autowired
+   @Autowired
     RolService rolService;
 
     @Override
@@ -24,4 +24,4 @@ public class CreateRoles implements CommandLineRunner {
         rolService.save(rolAdmin);
         rolService.save(rolUser);
     }
-} 
+} */

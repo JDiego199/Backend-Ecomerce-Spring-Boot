@@ -4,7 +4,6 @@ import com.BackendEcomerce.model.Cliente;
 import com.BackendEcomerce.request.ClienteCreateRequest;
 import com.BackendEcomerce.security.dto.JwtDto;
 import com.amoelcodigo.crud.dto.Mensaje;
-import com.amoelcodigo.crud.security.dto.JwtDto;
 import com.BackendEcomerce.security.dto.LoginUsuario;
 import com.BackendEcomerce.security.dto.NuevoUsuario;
 import com.BackendEcomerce.security.entity.Rol;
@@ -49,7 +48,7 @@ public class AuthController {
     JwtProvider jwtProvider;
 
     //Espera un json y lo convierte a tipo clase NuevoUsuario
-    @PostMapping("/nuevoUsuario")
+    @PostMapping("/register")
     public ResponseEntity<?> nuevoUsuario(@Valid @RequestBody ClienteCreateRequest nuevoUsuario,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {

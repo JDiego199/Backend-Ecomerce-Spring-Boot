@@ -1,6 +1,5 @@
 package com.BackendEcomerce.security.dto;
 
-import com.BackendEcomerce.security.entity.Rol;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
@@ -18,7 +17,7 @@ public class NuevoUsuario {
     private String password;
     //Por defecto crea un usuario normal
     //Si quiero un usuario Admin debo pasar este campo roles
-    private Set<Rol> roles = new HashSet<>();
+    private Set<String> roles = new HashSet<>();
 
     public String getNombre() {
         return nombre;
@@ -52,11 +51,11 @@ public class NuevoUsuario {
         this.password = password;
     }
 
-    public Set<Rol> getRoles() {
+    public Set<String> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Rol> roles) {
+    public void setRoles(Set<String> roles) {
         this.roles = roles;
     }
 }

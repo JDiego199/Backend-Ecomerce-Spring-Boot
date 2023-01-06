@@ -58,20 +58,10 @@ public class OrdenesServiceImplement implements OrdenesService {
         Producto productoActual = new Producto();
         productoActual = productoRepository.findById(id).orElse(null);
 
-        //Producto prodNuevo = productoService.findById(id);
         productoActual.setCantidad(productoActual.getCantidad() - idprod);
-        /*   productoActual.setDescripcion(productoActual.getDescripcion());
-      productoActual.setDescuento(productoActual.getDescuento());
-      productoActual.setPrecio(productoActual.getPrecio());
-      productoActual.setNombre(productoActual.getNombre());
-      productoActual.setPrecio_fabrica(productoActual.getPrecio_fabrica());
-      productoActual.setFecha_registro(productoActual.getFecha_registro());*/
 
         productoRepository.save(productoActual);
 
-      //  ordenesRepository.findById(id).orElse(null);
-
-        //llamaar servicio en producto que reciviendo el id y cantidad actualice la bd
     }
 
 }
