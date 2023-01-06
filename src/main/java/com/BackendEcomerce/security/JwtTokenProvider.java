@@ -1,6 +1,7 @@
 package com.BackendEcomerce.security;
 
 
+import com.BackendEcomerce.model.Cliente;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -13,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import static javax.crypto.Cipher.SECRET_KEY;
 import org.springframework.http.HttpStatus;
 
 @Component
@@ -24,13 +26,13 @@ public class JwtTokenProvider {
     @Value("${eCommerce.expires.in}")
     private long EXPIRES_IN;
 
-    public String generateJwtToken(Authentication auth) {
-        JwtUserDetails userDetails = (JwtUserDetails) auth.getPrincipal();
-        Date expireDate = new Date(new Date().getTime() + EXPIRES_IN);
-        return Jwts.builder().setSubject(Integer.toString(userDetails.getId()))
-                .setIssuedAt(new Date()).setExpiration(expireDate)
-                .signWith(SignatureAlgorithm.HS512, APP_SECRET).compact();
-    }
+//    public String generateJwtToken(Authentication auth) {
+//        JwtUserDetails userDetails = (JwtUserDetails) auth.getPrincipal();
+//        Date expireDate = new Date(new Date().getTime() + EXPIRES_IN);
+//        return Jwts.builder().setSubject(Integer.toString(userDetails.getId()))
+//                .setIssuedAt(new Date()).setExpiration(expireDate)
+//                .signWith(SignatureAlgorithm.HS512, APP_SECRET).compact();
+//    }
 
     int getUserIdFromJwt(String token) {
         Claims claims = Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(token).getBody();
@@ -69,5 +71,29 @@ public class JwtTokenProvider {
         Date expiration = Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(token).getBody().getExpiration();
         return expiration.before(new Date());
     }
+    
+//    public String generateJwtToken2(Authentication auth) {
+//        JwtUserDetails userDetails = (JwtUserDetails) auth.getPrincipal();
+//        Date expireDate = new Date(new Date().getTime() + EXPIRES_IN);
+//        return Jwts.builder().setSubject(Integer.toString(userDetails.getId()))
+//                .claim("roles", user.getRoles().toString())
+//                .setIssuedAt(new Date())
+//                .setExpiration(expireDate)
+//                .signWith(SignatureAlgorithm.HS512, APP_SECRET).compact();
+//    }
+    
+    public String generateAccessToken(Cliente user) {
+        Date expireDate = new Date(new Date().getTime() + EXPIRES_IN);
+     
+    return Jwts.builder()
+            .setSubject(String.format("%s,%s", user.getId_cliente(),user.getPassword()))
+            .setIssuer("CodeJava")
+            .claim("roles", user.getRoles().toString())
+            .setIssuedAt(new Date())
+            .setExpiration(expireDate)
+            .signWith(SignatureAlgorithm.HS512, APP_SECRET)
+            .compact();
+}
 
 }
+
