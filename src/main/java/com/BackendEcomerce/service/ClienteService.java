@@ -6,6 +6,7 @@ package com.BackendEcomerce.service;
 
 import com.BackendEcomerce.model.Cliente;
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -17,6 +18,7 @@ public interface ClienteService {
     public Cliente save(Cliente cliente);
     public Cliente findById(Integer id);
         public void delete(Integer id);
-        Cliente getByUserName(String nombre_usuario);
+    // public   Cliente getByUserName(String userName);
+      public Optional<Cliente> getByUserName(String userName);
    // void authDeleteByUser(UserDeleteRequest userDeleteRequest);
 }

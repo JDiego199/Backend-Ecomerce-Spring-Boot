@@ -7,6 +7,7 @@ package com.BackendEcomerce.service;
 import com.BackendEcomerce.Repository.ClienteRepository;
 import com.BackendEcomerce.model.Cliente;
 import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,10 +65,9 @@ public class ClienteServiceImplement implements ClienteService{
         clienteRepository.deleteById(id);
     }
     
-    
     @Override
-    public Cliente getByUserName(String nombre_usuario) {
-        return clienteRepository.findByUserName(nombre_usuario);
-   }
+    public Optional<Cliente> getByUserName(String userName){
+        return clienteRepository.findByUserName(userName);
+    }
 
 }

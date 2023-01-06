@@ -6,6 +6,7 @@ package com.BackendEcomerce.model;
 
 
 
+import com.BackendEcomerce.security.entity.Rol;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
@@ -53,15 +54,17 @@ public class Cliente {
     
      @Column(name = "userName", nullable = false)
 	private String userName;
-    @ManyToMany
-    @JoinTable(
-        name = "users_roles",
-        joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<Role> roles = new HashSet<>();
      
+
      
+         @ManyToMany
+    // join columns hace referencia a la columna que hace referencia hacia esta
+    // Es decir la tabla usuario_rol va a tener un campo que se llama id_usuario
+    // inverseJoinColumns = el inverso, hace referencia a rol
+    @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "id_usuario"),
+    inverseJoinColumns = @JoinColumn(name = "rol_id"))
+    private Set<Rol> roles = new HashSet<>();
+       //  private Set<String> roless = new HashSet<>();
   //  @OneToOne()
   //  private Cliente_empresa cliente_empresa;
     
@@ -72,8 +75,8 @@ public class Cliente {
     @OneToMany()
     private List<Direccion> direccion;
 
-
-    public Cliente(String nombre, String email, String telefono, Calendar fecha_nacimient, Calendar fecha_registro, String password, String userName, List<Direccion> direccion) {
+    public Cliente(Integer id_cliente, String nombre, String email, String telefono, Calendar fecha_nacimient, Calendar fecha_registro, String password, String userName, List<Direccion> direccion) {
+        this.id_cliente = id_cliente;
         this.nombre = nombre;
         this.email = email;
         this.telefono = telefono;
@@ -83,7 +86,9 @@ public class Cliente {
         this.userName = userName;
         this.direccion = direccion;
     }
-    
+
+
+
      
     
 }

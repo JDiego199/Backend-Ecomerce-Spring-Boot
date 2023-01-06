@@ -7,9 +7,11 @@ package com.BackendEcomerce.Controller;
 import com.BackendEcomerce.model.Cliente;
 import com.BackendEcomerce.service.ClienteService;
 import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,6 +54,7 @@ public class ClienteController {
 	}
 	
 	//listar
+
 	@GetMapping("/cliente")
 	public List<Cliente> listar(){
 		return clienteService.findAll();
@@ -64,8 +67,8 @@ public class ClienteController {
 	
         //get una cuenta
 	@GetMapping ("/cliente/{id}")
-	public Cliente getUnaAhorros(@PathVariable Integer id){
-		return clienteService.findById(id);
+	public Optional<Cliente> getUnaAhorros(@PathVariable String id){
+		return clienteService.getByUserName(id);
 	}
 	
         @PutMapping ("/cliente/{id}")
