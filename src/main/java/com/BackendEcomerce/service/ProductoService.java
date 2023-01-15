@@ -24,5 +24,7 @@ public interface ProductoService {
    public void delete(Integer id);
    
   public boolean validarStoc(Integer catindad, Integer id);
+  
+    public List<Producto> findAllEmpresa(Integer id);
 
 }

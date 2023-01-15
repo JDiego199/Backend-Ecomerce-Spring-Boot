@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/ordenes")
+@RequestMapping("/api")
 public class OrdenesController {
    @Autowired
    public OrdenesService OrdenesService;
@@ -48,7 +48,7 @@ public class OrdenesController {
    }
 
    //listar
-   @GetMapping("/listar")
+   @GetMapping("/ordenes")
    public List<Ordenes> listar() {
       return OrdenesService.findAll();
    }

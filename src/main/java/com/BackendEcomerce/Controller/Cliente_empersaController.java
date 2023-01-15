@@ -5,6 +5,7 @@
 package com.BackendEcomerce.Controller;
 
 import com.BackendEcomerce.model.Cliente_empresa;
+import com.BackendEcomerce.model.Producto;
 import com.BackendEcomerce.service.Cliente_empresaService;
 
 import java.util.List;
@@ -54,9 +55,11 @@ public class Cliente_empersaController {
    //get una cuenta
    @GetMapping("/cliente_empresa/{id}")
    public Cliente_empresa getUnaAhorros(@PathVariable Integer id) {
+       
       return cliente_empresaService.findById(id);
    }
 
+   
    @PutMapping("/cliente_empresa/{id}")
    public Cliente_empresa modificar(@RequestBody Cliente_empresa cliente_empresa, @PathVariable Integer id) {
 

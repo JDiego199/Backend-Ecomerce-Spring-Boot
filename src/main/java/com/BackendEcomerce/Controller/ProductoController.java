@@ -6,6 +6,7 @@ package com.BackendEcomerce.Controller;
 
 import com.BackendEcomerce.model.Producto;
 import com.BackendEcomerce.service.ProductoService;
+import com.BackendEcomerce.service.ProductoServiceImplement;
 
 import java.util.List;
 
@@ -26,13 +27,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/producto/")
+@RequestMapping("/api/")
 
 public class ProductoController {
 
    @Autowired
    public ProductoService productoService;
 
+      @Autowired
+   public ProductoServiceImplement productoServiceImplement;
 
    //Guardar
    @PostMapping("/producto")
@@ -45,6 +48,12 @@ public class ProductoController {
    @GetMapping("/producto")
    public List<Producto> listar() {
       return productoService.findAll();
+   }
+   @GetMapping("/productoEmpresa/{id}")
+   public List<Producto> listarPorEmpresa(@PathVariable Integer id) {
+       
+       
+      return productoService.findAllEmpresa(id);
    }
 
    @DeleteMapping("/producto/{id}")

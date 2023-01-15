@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @RestController
@@ -64,6 +65,8 @@ public class AuthController {
         Cliente newUser = new Cliente();
         newUser.setUserName(nuevoUsuario.getUserName());
         newUser.setPassword(passwordEncoder.encode(nuevoUsuario.getPassword()));
+        newUser.setNombre(nuevoUsuario.getNombre());
+        newUser.setEmail(nuevoUsuario.getEmail());
 
         Set<Rol> roles = new HashSet<>();
         newUser.setRoles(roles);
@@ -97,7 +100,9 @@ public class AuthController {
     }
 
     @PostMapping("/login")
+    
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult) {
+        Optional<Cliente> usuario = usuarioService.getByUserName(loginUsuario.getUserName());
         if (bindingResult.hasErrors()) {
             return new ResponseEntity(new Mensaje("Campos mal"), HttpStatus.BAD_REQUEST);
         }
@@ -108,7 +113,7 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtProvider.generateToken(authentication);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
+        JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(),usuario.get().getId_cliente(), userDetails.getAuthorities());
         return new ResponseEntity<>(jwtDto, HttpStatus.OK);
     }
 }

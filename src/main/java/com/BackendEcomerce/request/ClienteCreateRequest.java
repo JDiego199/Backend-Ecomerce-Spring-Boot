@@ -20,7 +20,9 @@ import lombok.Setter;
 @Setter
 public class ClienteCreateRequest {
         String userName;
+        String nombre;
         String password;
+        String email;
            String rol;
          private Set<String> roles = new HashSet<>();
 }
