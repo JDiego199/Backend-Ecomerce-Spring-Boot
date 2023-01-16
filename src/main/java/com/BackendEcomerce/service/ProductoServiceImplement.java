@@ -8,10 +8,8 @@ import com.BackendEcomerce.DAO.ProductoDAO;
 import com.BackendEcomerce.Repository.ProductoRepository;
 import com.BackendEcomerce.model.Producto;
 import java.util.ArrayList;
-
 import java.util.List;
 import java.util.Objects;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -78,8 +76,23 @@ public class ProductoServiceImplement implements ProductoService {
     @Override
     @Transactional(readOnly = true)
     public Producto findById(Integer id) {
-
+        
+       
         return productoRepository.findById(id).orElse(null);
+  
+    }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public Producto findByIdMay0(Integer id) {
+        
+        if(ControlNumeroProduct(id)){
+        
+        return productoRepository.findById(id).orElse(null);
+        
+        }
+        else{ return (null);}
+       
     }
 
     @Override
@@ -95,4 +108,24 @@ public class ProductoServiceImplement implements ProductoService {
         prod = productoRepository.findById(id).orElse(null);
         return prod.getCantidad() >= cantidad;
     }
+    
+    
+    
+        public boolean ControlNumeroProduct(Integer id) {
+
+        //obtener id del producto y su cantidad
+        Producto productoActual = new Producto();
+        productoActual = productoRepository.findById(id).orElse(null);
+
+        if(productoActual.getCantidad()>0){
+        
+        return true;
+        
+        
+        }
+        else{return false;}
+
+
+    }
+
 }
