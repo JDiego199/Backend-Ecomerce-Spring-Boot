@@ -4,12 +4,10 @@
  */
 package com.BackendEcomerce.Controller;
 
-
-import com.BackendEcomerce.model.Orden_detalles;
 import com.BackendEcomerce.model.Ordenes;
-import com.BackendEcomerce.service.Orden_detallesService;
-import com.BackendEcomerce.service.OrdenesService;
-
+import com.BackendEcomerce.model.Producto;
+import com.BackendEcomerce.service.ProductoServiceImplement;
+import com.BackendEcomerce.service.ProductoService;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,56 +24,71 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author mota1
  */
+
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api")
-public class OrdenesController {
+@RequestMapping("/api/")
+
+public class ProductoController {
+
    @Autowired
-   public OrdenesService OrdenesService;
-    @Autowired
-   public Orden_detallesService orden_detalles;
+   public ProductoService productoService;
+
+      @Autowired
+   public ProductoServiceImplement productoServiceImplement;
 
    //Guardar
-   @PostMapping("/ordenes")
-   public Ordenes guardar(@RequestBody Ordenes ordenes) {
+   @PostMapping("/producto")
+   public Producto guardar(@RequestBody Producto producto) {
 
-        OrdenesService.confirmarOrder(ordenes.getOrdenes_detalles().getProducto().getId_producto(), ordenes.getOrdenes_detalles().getCantidad());
-      return OrdenesService.save(ordenes);
-      
-     //Orden_detalles orden = new Orden_detalles();
-      
-     
+      return productoService.save(producto);
    }
 
    //listar
-   @GetMapping("/ordenes")
-   public List<Ordenes> listar() {
-      return OrdenesService.findAll();
+   @GetMapping("/producto")
+   public List<Producto> listar() {
+      return productoService.findAll();
+   }
+   @GetMapping("/productoEmpresa/{id}")
+   public List<Producto> listarPorEmpresa(@PathVariable Integer id) {
+       
+       
+      return productoService.findAllEmpresa(id);
    }
 
-   @DeleteMapping("/ordenes/{id}")
+   @DeleteMapping("/producto/{id}")
    public void eliminar(@PathVariable Integer id) {
-      OrdenesService.delete(id);
+      productoService.delete(id);
    }
 
    //get una cuenta
-   @GetMapping("/ordenes/{id}")
-   public Ordenes getUnaAhorros(@PathVariable Integer id) {
-      return OrdenesService.findById(id);
+   @GetMapping("/producto/{id}")
+   public Producto getUnaAhorros(@PathVariable Integer id) {
+      return productoService.findById(id);
    }
 
-   @PutMapping("/ordenes/{id}")
-   public Ordenes modificar(@RequestBody Ordenes ordenes, @PathVariable Integer id) {
+   @PutMapping("/producto/{id}")
+   public Producto modificar(@RequestBody Producto producto, @PathVariable Integer id) {
 
-      Ordenes Actual = OrdenesService.findById(id);
-      Actual.setFecha(ordenes.getFecha());
-      Actual.setIva(ordenes.getIva());
-      Actual.setNumero_factura(ordenes.getNumero_factura());
-      Actual.setSubTotal(ordenes.getSubTotal());
-      Actual.setTotal(ordenes.getTotal());
+      Producto productoActual = productoService.findById(id);
+      productoActual.setCantidad(producto.getCantidad());
+      productoActual.setDescripcion(producto.getDescripcion());
+      productoActual.setDescuento(producto.getDescuento());
+      productoActual.setPrecio(producto.getPrecio());
+      productoActual.setNombre(producto.getNombre());
+      productoActual.setPrecio_fabrica(producto.getPrecio_fabrica());
+      productoActual.setFecha_registro(producto.getFecha_registro());
 
-      return OrdenesService.save(Actual);
+      return productoService.save(productoActual);
    }
+   
+   
+   
+   @GetMapping("/productoMay0/{id}")
+   public Producto getProductMay0(@PathVariable Integer id) {
+      return productoService.findByIdMay0(id);
+   }
+   
    
    
 
