@@ -20,11 +20,15 @@ public interface ProductoService {
    public Producto save(Producto producto);
 
    public Producto findById(Integer id);
+     public Producto findByIdMay0(Integer id);
 
    public void delete(Integer id);
    
   public boolean validarStoc(Integer catindad, Integer id);
   
     public List<Producto> findAllEmpresa(Integer id);
+    
+      public boolean ControlNumeroProduct(Integer id);
 
 }
+
