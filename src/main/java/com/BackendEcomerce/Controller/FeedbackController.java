@@ -5,6 +5,7 @@
 package com.BackendEcomerce.Controller;
 
 import com.BackendEcomerce.model.Feedback;
+import com.BackendEcomerce.model.Producto;
 import com.BackendEcomerce.service.FeedbackService;
 
 import java.util.List;
@@ -28,41 +29,45 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/")
 public class FeedbackController {
 
-   @Autowired
-   public FeedbackService feedbackService;
+    @Autowired
+    public FeedbackService feedbackService;
 
+    //Guardara
+    @PostMapping("/feedback")
+    public Feedback guardar(@RequestBody Feedback feedback) {
 
-   //Guardar
-   @PostMapping("/feedback")
-   public Feedback guardar(@RequestBody Feedback feedback) {
+        return feedbackService.save(feedback);
+    }
+    @PostMapping("/feedbackControl")
+    public boolean feedControl(@PathVariable Integer id, @PathVariable Integer id2,@RequestBody Feedback feedback) {
+     return feedbackService.PermisoComentarFeedback(id, id2, feedback);
 
-      return feedbackService.save(feedback);
-   }
+    }
+    //listar
 
-   //listar
-   @GetMapping("/feedback")
-   public List<Feedback> listar() {
-      return feedbackService.findAll();
-   }
+    @GetMapping("/feedback")
+    public List<Feedback> listar() {
+        return feedbackService.findAll();
+    }
 
-   @DeleteMapping("/feedback/{id}")
-   public void eliminar(@PathVariable Integer id) {
-      feedbackService.delete(id);
-   }
+    @DeleteMapping("/feedback/{id}")
+    public void eliminar(@PathVariable Integer id) {
+        feedbackService.delete(id);
+    }
 
-   //get una cuenta
-   @GetMapping("/feedback/{id}")
-   public Feedback getUnaAhorros(@PathVariable Integer id) {
-      return feedbackService.findById(id);
-   }
+    //get una cuenta
+    @GetMapping("/feedback/{id}")
+    public Feedback getUnaAhorros(@PathVariable Integer id) {
+        return feedbackService.findById(id);
+    }
 
-   @PutMapping("/feedback/{id}")
-   public Feedback modificar(@RequestBody Feedback feedback, @PathVariable Integer id) {
+    @PutMapping("/feedback/{id}")
+    public Feedback modificar(@RequestBody Feedback feedback, @PathVariable Integer id) {
 
-      Feedback Actual = feedbackService.findById(id);
-      Actual.setDescripcion(feedback.getDescripcion());
+        Feedback Actual = feedbackService.findById(id);
+        Actual.setDescripcion(feedback.getDescripcion());
 
-      return feedbackService.save(Actual);
-   }
+        return feedbackService.save(Actual);
+    }
 
 }
