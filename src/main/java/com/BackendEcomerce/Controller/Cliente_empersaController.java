@@ -4,6 +4,7 @@
  */
 package com.BackendEcomerce.Controller;
 
+import com.BackendEcomerce.model.Cliente;
 import com.BackendEcomerce.model.Cliente_empresa;
 import com.BackendEcomerce.model.Producto;
 import com.BackendEcomerce.service.Cliente_empresaService;
@@ -35,9 +36,15 @@ public class Cliente_empersaController {
    public Cliente_empresaService cliente_empresaService;
 
    //Guardar
-   @PostMapping("/cliente_empresa")
-   public Cliente_empresa guardar(@RequestBody Cliente_empresa cliente_empresa) {
-
+   @PostMapping("/cliente_empresaGuardar/{id}")
+   public Cliente_empresa guardar(@RequestBody Cliente_empresa cliente_empresa, @PathVariable Integer id) {
+       
+       cliente_empresa.setId_empresa(id);
+       Cliente cliente = new Cliente();
+       cliente = cliente_empresa.getCliente();
+       cliente.setId_cliente(id);
+       cliente_empresa.setCliente(cliente);
+       
       return cliente_empresaService.save(cliente_empresa);
    }
 

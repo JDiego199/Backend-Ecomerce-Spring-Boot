@@ -5,9 +5,14 @@
 package com.BackendEcomerce.Controller;
 
 import com.BackendEcomerce.model.Cliente;
+import com.BackendEcomerce.security.entity.Rol;
+import com.BackendEcomerce.security.enums.RolNombre;
+import com.BackendEcomerce.security.service.RolService;
 import com.BackendEcomerce.service.ClienteService;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +39,8 @@ public class ClienteController {
         
     @Autowired
     public ClienteService clienteService;
+        @Autowired
+    RolService rolService;
 
  /*   @GetMapping("/cliente")
     public List<Cliente> getAll() {
@@ -52,6 +59,17 @@ public class ClienteController {
 		
 		return clienteService.save(cliente);                       	
 	}
+       
+       @PutMapping("/clienteCambiarRol/{id}")
+	public Cliente CambiarRol (@RequestBody Cliente cliente2, @PathVariable Integer id){
+		Cliente cliente = new Cliente();
+            cliente = clienteService.findById(id);
+             Set<Rol> roles = new HashSet<>();
+              roles.add(rolService.getByRolNombre(RolNombre.ROLE_EMPRESA).get());
+            cliente.setRoles(roles);
+            
+		return clienteService.save(cliente);                       	
+	}
 	
 	//listar
 
@@ -59,6 +77,11 @@ public class ClienteController {
 	public List<Cliente> listar(){
 		return clienteService.findAll();
 	}
+        @GetMapping ("/clienteId/{id}")
+	public Cliente getById(@PathVariable Integer id){
+		return clienteService.findById(id);
+	}
+        
 	
 	@DeleteMapping ("/cliente/{id}")
 	public void eliminar(@PathVariable Integer id){
@@ -83,6 +106,7 @@ public class ClienteController {
                 clientetoActual.setNombre(cliente.getNombre());
                 clientetoActual.setUserName(cliente.getUserName());
                 clientetoActual.setTelefono(cliente.getTelefono());
+                clientetoActual.setRoles(cliente.getRoles());
    
                 return clienteService.save(clientetoActual);
 	}

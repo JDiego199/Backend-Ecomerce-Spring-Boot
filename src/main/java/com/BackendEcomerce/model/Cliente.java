@@ -64,6 +64,7 @@ public class Cliente {
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "id_usuario"),
     inverseJoinColumns = @JoinColumn(name = "rol_id"))
     private Set<Rol> roles = new HashSet<>();
+                
        //  private Set<String> roless = new HashSet<>();
   //  @OneToOne()
   //  private Cliente_empresa cliente_empresa;
