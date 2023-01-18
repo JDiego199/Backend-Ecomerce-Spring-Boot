@@ -19,4 +19,5 @@ public interface FeedbackService {
    public Feedback findById(Integer id);
 
    public void delete(Integer id);
+   public boolean PermisoComentarFeedback(Integer id, Integer idEmpresa, Feedback feedback);
 }
