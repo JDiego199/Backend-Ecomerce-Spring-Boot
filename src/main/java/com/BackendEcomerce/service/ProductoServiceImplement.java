@@ -40,7 +40,6 @@ public class ProductoServiceImplement implements ProductoService {
         Producto producto = productoRepository.findById(id).orElseThrow();
         return producto;
     }*/
-
     @Override
     @Transactional(readOnly = true)
     public List<Producto> findAll() {
@@ -83,6 +82,20 @@ public class ProductoServiceImplement implements ProductoService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public Producto findByIdMay0(Integer id) {
+
+        if (ControlNumeroProduct(id)) {
+
+            return productoRepository.findById(id).orElse(null);
+
+        } else {
+            return (null);
+        }
+
+    }
+
+    @Override
     @Transactional(readOnly = false)
     public void delete(Integer id) {
         productoRepository.deleteById(id);
@@ -95,4 +108,22 @@ public class ProductoServiceImplement implements ProductoService {
         prod = productoRepository.findById(id).orElse(null);
         return prod.getCantidad() >= cantidad;
     }
+
+    @Override
+    public boolean ControlNumeroProduct(Integer id) {
+
+        //obtener id del producto y su cantidad
+        Producto productoActual = new Producto();
+        productoActual = productoRepository.findById(id).orElse(null);
+
+        if (productoActual.getCantidad() > 0) {
+
+            return true;
+
+        } else {
+            return false;
+        }
+
+    }
+
 }
