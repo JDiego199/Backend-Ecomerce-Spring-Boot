@@ -38,7 +38,11 @@ public class FeedbackController {
 
       return feedbackService.save(feedback);
    }
+@PostMapping("/feedbackControl")
+    public boolean feedControl(@PathVariable Integer id, @PathVariable Integer id2,@RequestBody Feedback feedback) {
+     return feedbackService.PermisoComentarFeedback(id, id2, feedback);
 
+    }
    //listar
    @GetMapping("/feedback")
    public List<Feedback> listar() {
