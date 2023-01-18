@@ -82,4 +82,14 @@ public class ProductoController {
       return productoService.save(productoActual);
    }
 
+   
+   
+   @GetMapping("/productoMay0/{id}")
+   public Producto getProductMay0(@PathVariable Integer id) {
+      return productoService.findByIdMay0(id);
+   }
+   
+   
+   
+
 }
