@@ -7,6 +7,7 @@ package com.BackendEcomerce.Controller;
 import com.BackendEcomerce.model.Cliente;
 import com.BackendEcomerce.model.Cliente_empresa;
 import com.BackendEcomerce.model.Producto;
+import com.BackendEcomerce.service.ClienteService;
 import com.BackendEcomerce.service.Cliente_empresaService;
 
 import java.util.List;
@@ -34,14 +35,16 @@ public class Cliente_empersaController {
 
    @Autowired
    public Cliente_empresaService cliente_empresaService;
-
+   @Autowired
+   public ClienteService clienteService ;
    //Guardar
    @PostMapping("/cliente_empresaGuardar/{id}")
    public Cliente_empresa guardar(@RequestBody Cliente_empresa cliente_empresa, @PathVariable Integer id) {
        
        cliente_empresa.setId_empresa(id);
        Cliente cliente = new Cliente();
-       cliente = cliente_empresa.getCliente();
+       
+       cliente = clienteService.findById(id);
        cliente.setId_cliente(id);
        cliente_empresa.setCliente(cliente);
        

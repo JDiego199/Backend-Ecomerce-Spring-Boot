@@ -51,7 +51,11 @@ public class Producto {
     @Column(name = "fecha_registro", nullable = false)
     @Temporal(TemporalType.DATE)
     private Calendar fecha_registro;
+    
+    @Column(name = "imagen")
+    private String [] fileList;
 
+ 
     @OneToMany
     private List<Orden_detalles> Orden_detalles;
 
