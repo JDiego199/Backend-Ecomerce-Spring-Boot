@@ -40,7 +40,7 @@ public class ProductoController {
    @Autowired
    public Cliente_empresaService cliente_empresaService;
 
-      @Autowired
+   @Autowired
    public ProductoServiceImplement productoServiceImplement;
 
    //Guardar
@@ -48,9 +48,9 @@ public class ProductoController {
    public Producto guardar(@RequestBody Producto producto, @PathVariable Integer id) {
 
       Cliente_empresa cliente_empresa = new Cliente_empresa();
-      
+
       cliente_empresa = cliente_empresaService.findById(id);
-      
+
       producto.setCliente_empresa(cliente_empresa);
       return productoService.save(producto);
    }
@@ -60,10 +60,11 @@ public class ProductoController {
    public List<Producto> listar() {
       return productoService.findAll();
    }
+
    @GetMapping("/productoEmpresa/{id}")
    public List<Producto> listarPorEmpresa(@PathVariable Integer id) {
-       
-       
+
+
       return productoService.findAllEmpresa(id);
    }
 

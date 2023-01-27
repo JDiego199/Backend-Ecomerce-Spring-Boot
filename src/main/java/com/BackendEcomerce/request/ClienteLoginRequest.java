@@ -5,19 +5,15 @@
 package com.BackendEcomerce.request;
 
 /**
- *
  * @author mota1
  */
+
 import lombok.Data;
 
 @Data
 public class ClienteLoginRequest {
 
-    String userName;
-    String password;
+   String userName;
+   String password;
 
-
-
-
-    
 }

@@ -32,19 +32,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrdenesController {
    @Autowired
    public OrdenesService OrdenesService;
-    @Autowired
+   @Autowired
    public Orden_detallesService orden_detalles;
 
    //Guardar
    @PostMapping("/ordenes")
    public Ordenes guardar(@RequestBody Ordenes ordenes) {
 
-        OrdenesService.confirmarOrder(ordenes.getOrdenes_detalles().getProducto().getId_producto(), ordenes.getOrdenes_detalles().getCantidad());
+      OrdenesService.confirmarOrder(ordenes.getOrdenes_detalles().getProducto().getId_producto(), ordenes.getOrdenes_detalles().getCantidad());
       return OrdenesService.save(ordenes);
-      
-     //Orden_detalles orden = new Orden_detalles();
-      
-     
+
+      //Orden_detalles orden = new Orden_detalles();
+
+
    }
 
    //listar
@@ -76,7 +76,6 @@ public class OrdenesController {
 
       return OrdenesService.save(Actual);
    }
-   
-   
+
 
 }

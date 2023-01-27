@@ -12,25 +12,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
  * @author mota1
  */
 
 @Service
-public class ValidacionOrden_detalles  {
-    
-    
-  @Autowired
-  public ProductoService productoservicie;
-       
-      public boolean validarCantidad(int cantidad) {
-       
-      Producto prod = new Producto();
-      prod =  productoservicie.findById(cantidad);
-      
-       return prod.getCantidad() >= cantidad;
-      
-      
-   }
+public class ValidacionOrden_detalles {
 
+
+   @Autowired
+   public ProductoService productoservicie;
+
+   public boolean validarCantidad(int cantidad) {
+
+      Producto prod = new Producto();
+      prod = productoservicie.findById(cantidad);
+
+      return prod.getCantidad() >= cantidad;
+
+   }
 }

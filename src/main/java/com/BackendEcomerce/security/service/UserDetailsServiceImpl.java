@@ -19,15 +19,12 @@ import javax.transaction.Transactional;
 @Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    @Autowired
-    ClienteService usuarioService;
+   @Autowired
+   ClienteService usuarioService;
 
-    @Override
-    public UserDetails loadUserByUsername(String nombreUsuario) throws UsernameNotFoundException {
-        Cliente usuario = usuarioService.getByUserName(nombreUsuario).get();
-        return UsuarioMain.build(usuario);
-    }
-    
-
-
+   @Override
+   public UserDetails loadUserByUsername(String nombreUsuario) throws UsernameNotFoundException {
+      Cliente usuario = usuarioService.getByUserName(nombreUsuario).get();
+      return UsuarioMain.build(usuario);
+   }
 }

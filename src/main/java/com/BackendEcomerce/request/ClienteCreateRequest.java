@@ -5,12 +5,14 @@
 package com.BackendEcomerce.request;
 
 /**
- *
  * @author mota1
  */
+
 import com.BackendEcomerce.security.entity.Rol;
+
 import java.util.HashSet;
 import java.util.Set;
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,10 +21,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ClienteCreateRequest {
-        String userName;
-        String nombre;
-        String password;
-        String email;
-           String rol;
-         private Set<String> roles = new HashSet<>();
+   String userName;
+   String nombre;
+   String password;
+   String email;
+   String rol;
+   private Set<String> roles = new HashSet<>();
 }

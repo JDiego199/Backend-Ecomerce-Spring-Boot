@@ -36,18 +36,19 @@ public class Cliente_empersaController {
    @Autowired
    public Cliente_empresaService cliente_empresaService;
    @Autowired
-   public ClienteService clienteService ;
+   public ClienteService clienteService;
+
    //Guardar
    @PostMapping("/cliente_empresaGuardar/{id}")
    public Cliente_empresa guardar(@RequestBody Cliente_empresa cliente_empresa, @PathVariable Integer id) {
-       
-       cliente_empresa.setId_empresa(id);
-       Cliente cliente = new Cliente();
-       
-       cliente = clienteService.findById(id);
-       cliente.setId_cliente(id);
-       cliente_empresa.setCliente(cliente);
-       
+
+      cliente_empresa.setId_empresa(id);
+      Cliente cliente = new Cliente();
+
+      cliente = clienteService.findById(id);
+      cliente.setId_cliente(id);
+      cliente_empresa.setCliente(cliente);
+
       return cliente_empresaService.save(cliente_empresa);
    }
 
@@ -65,11 +66,11 @@ public class Cliente_empersaController {
    //get una cuenta
    @GetMapping("/cliente_empresa/{id}")
    public Cliente_empresa getUnaAhorros(@PathVariable Integer id) {
-       
+
       return cliente_empresaService.findById(id);
    }
 
-   
+
    @PutMapping("/cliente_empresa/{id}")
    public Cliente_empresa modificar(@RequestBody Cliente_empresa cliente_empresa, @PathVariable Integer id) {
 
@@ -84,5 +85,5 @@ public class Cliente_empersaController {
       return cliente_empresaService.save(Actual);
    }
 
- 
+
 }

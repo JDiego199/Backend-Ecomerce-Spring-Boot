@@ -23,45 +23,45 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class OrdenesServiceImplement implements OrdenesService {
 
-    @Autowired
-    private OrdenesRepository ordenesRepository;
-    @Autowired
-    private ProductoRepository productoRepository;
+   @Autowired
+   private OrdenesRepository ordenesRepository;
+   @Autowired
+   private ProductoRepository productoRepository;
 
-    @Override
-    @Transactional(readOnly = true)
-    public List<Ordenes> findAll() {
-        return (List<Ordenes>) ordenesRepository.findAll();
-    }
+   @Override
+   @Transactional(readOnly = true)
+   public List<Ordenes> findAll() {
+      return (List<Ordenes>) ordenesRepository.findAll();
+   }
 
-    @Override
-    @Transactional(readOnly = false)
-    public Ordenes save(Ordenes ordenes) {
-        return ordenesRepository.save(ordenes);
-    }
+   @Override
+   @Transactional(readOnly = false)
+   public Ordenes save(Ordenes ordenes) {
+      return ordenesRepository.save(ordenes);
+   }
 
-    @Override
-    @Transactional(readOnly = true)
-    public Ordenes findById(Integer id) {
-        return ordenesRepository.findById(id).orElse(null);
-    }
+   @Override
+   @Transactional(readOnly = true)
+   public Ordenes findById(Integer id) {
+      return ordenesRepository.findById(id).orElse(null);
+   }
 
-    @Override
-    @Transactional(readOnly = false)
-    public void delete(Integer id) {
-        ordenesRepository.deleteById(id);
-    }
+   @Override
+   @Transactional(readOnly = false)
+   public void delete(Integer id) {
+      ordenesRepository.deleteById(id);
+   }
 
-    public void confirmarOrder(Integer id, Integer idprod) {
+   public void confirmarOrder(Integer id, Integer idprod) {
 
-        //obtener id del producto y su cantidad
-        Producto productoActual = new Producto();
-        productoActual = productoRepository.findById(id).orElse(null);
+      //obtener id del producto y su cantidad
+      Producto productoActual = new Producto();
+      productoActual = productoRepository.findById(id).orElse(null);
 
-        productoActual.setCantidad(productoActual.getCantidad() - idprod);
+      productoActual.setCantidad(productoActual.getCantidad() - idprod);
 
-        productoRepository.save(productoActual);
+      productoRepository.save(productoActual);
 
-    }
+   }
 
 }

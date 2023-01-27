@@ -16,47 +16,47 @@ import java.util.Date;
 @Component
 public class JwtProvider {
 
-    // Implementamos un logger para ver cual metodo da error en caso de falla
-    private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
+   // Implementamos un logger para ver cual metodo da error en caso de falla
+   private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
-    //Valores que tenemos en el aplicattion.properties
-    @Value("${eCommerce.app.secret}")
-    private String secret;
+   //Valores que tenemos en el aplicattion.properties
+   @Value("${eCommerce.app.secret}")
+   private String secret;
 
-    @Value("${eCommerce.expires.in}")
-    private int expiration;
+   @Value("${eCommerce.expires.in}")
+   private int expiration;
 
-    public String generateToken(Authentication authentication){
-        UsuarioMain usuarioMain = (UsuarioMain) authentication.getPrincipal();
-        return Jwts.builder().setSubject(usuarioMain.getUsername())
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(new Date().getTime() + expiration * 1000))
-                .signWith(SignatureAlgorithm.HS512, secret)
-                .compact();
-    }
+   public String generateToken(Authentication authentication) {
+      UsuarioMain usuarioMain = (UsuarioMain) authentication.getPrincipal();
+      return Jwts.builder().setSubject(usuarioMain.getUsername())
+            .setIssuedAt(new Date())
+            .setExpiration(new Date(new Date().getTime() + expiration * 1000))
+            .signWith(SignatureAlgorithm.HS512, secret)
+            .compact();
+   }
 
-    //subject --> Nombre del usuario
-    public String getNombreUsuarioFromToken(String token){
-           return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
-    }
+   //subject --> Nombre del usuario
+   public String getNombreUsuarioFromToken(String token) {
+      return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
+   }
 
-    public Boolean validateToken(String token){
-        try {
-            Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
-            return true;
-        }catch (MalformedJwtException e){
-            logger.error("Token mal formado");
-        }catch (UnsupportedJwtException e){
-            logger.error("Token no soportado");
-        }catch (ExpiredJwtException e){
-            logger.error("Token expirado");
-        }catch (IllegalArgumentException e){
-            logger.error("Token vacio");
-        }catch (SignatureException e){
-            logger.error("Fallo con la firma");
-        }
-        return false;
-    }
+   public Boolean validateToken(String token) {
+      try {
+         Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
+         return true;
+      } catch (MalformedJwtException e) {
+         logger.error("Token mal formado");
+      } catch (UnsupportedJwtException e) {
+         logger.error("Token no soportado");
+      } catch (ExpiredJwtException e) {
+         logger.error("Token expirado");
+      } catch (IllegalArgumentException e) {
+         logger.error("Token vacio");
+      } catch (SignatureException e) {
+         logger.error("Fallo con la firma");
+      }
+      return false;
+   }
 
 
 }

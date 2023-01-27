@@ -62,7 +62,6 @@ public class Cliente_personaController {
 
       Actual.setDni(Cliente_persona.getDni());
       Actual.setFecha_registro(Cliente_persona.getFecha_registro());
-      Actual.setReputacion(Cliente_persona.getReputacion());
       Actual.setId_persona(Cliente_persona.getId_persona());
 
       return cliente_personaService.save(Actual);

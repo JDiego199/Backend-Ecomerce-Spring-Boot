@@ -8,9 +8,8 @@ import com.BackendEcomerce.security.entity.Rol;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- *
  * @author mota1
  */
 public interface usuario_rol extends JpaRepository<Rol, Integer> {
-    
+
 }

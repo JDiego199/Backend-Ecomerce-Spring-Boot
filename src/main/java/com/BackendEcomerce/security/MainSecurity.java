@@ -27,60 +27,60 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class MainSecurity extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    UserDetailsServiceImpl userDetailsService;
+   @Autowired
+   UserDetailsServiceImpl userDetailsService;
 
-    //Devuelve el mensaje de no autorizado
-    @Autowired
-    JwtEntryPoint jwtEntryPoint;
+   //Devuelve el mensaje de no autorizado
+   @Autowired
+   JwtEntryPoint jwtEntryPoint;
 
-    @Bean
-    public JwtTokenFilter jwtTokenFilter(){
-        return new JwtTokenFilter();
-    }
+   @Bean
+   public JwtTokenFilter jwtTokenFilter() {
+      return new JwtTokenFilter();
+   }
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
+   @Bean
+   public PasswordEncoder passwordEncoder() {
+      return new BCryptPasswordEncoder();
+   }
 
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
+   @Override
+   public void configure(AuthenticationManagerBuilder auth) throws Exception {
+      auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+   }
 
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
+   @Bean
+   @Override
+   public AuthenticationManager authenticationManagerBean() throws Exception {
+      return super.authenticationManagerBean();
+   }
 
-    @Override
-    protected AuthenticationManager authenticationManager() throws Exception {
-        return super.authenticationManager();
-    }
+   @Override
+   protected AuthenticationManager authenticationManager() throws Exception {
+      return super.authenticationManager();
+   }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        //Desactivamos cookies ya que enviamos un token
-            // cada vez que hacemos una petición
-        http.cors().and().csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/auth/**").permitAll()
+   @Override
+   protected void configure(HttpSecurity http) throws Exception {
+      //Desactivamos cookies ya que enviamos un token
+      // cada vez que hacemos una petición
+      http.cors().and().csrf().disable()
+            .authorizeRequests()
+            .antMatchers("/auth/**").permitAll()
             //   .antMatchers("/api/**").hasAuthority("ROLE_ADMIN")
-               // .antMatchers("/ordenes/listar").hasAuthority("ROLE_USER").anyRequest().authenticated()
-               // .antMatchers("/api/producto").hasAuthority("ROLE_USER")
-                
-             /*   .antMatchers("/producto/**").hasAuthority("ROLE_EMPRESA")
-                .antMatchers("/api/cliente_empresa").hasAuthority("ROLE_EMPRESA")
-                .antMatchers("/api/direccion").hasAuthority("ROLE_EMPRESA")
-                .antMatchers("/api/feedback").hasAuthority("ROLE_EMPRESA")*/
-                          
-              //   .anyRequest().authenticated()
-                .and()
-                .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
-                .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-    }
+            // .antMatchers("/ordenes/listar").hasAuthority("ROLE_USER").anyRequest().authenticated()
+            // .antMatchers("/api/producto").hasAuthority("ROLE_USER")
+
+            /*   .antMatchers("/producto/**").hasAuthority("ROLE_EMPRESA")
+               .antMatchers("/api/cliente_empresa").hasAuthority("ROLE_EMPRESA")
+               .antMatchers("/api/direccion").hasAuthority("ROLE_EMPRESA")
+               .antMatchers("/api/feedback").hasAuthority("ROLE_EMPRESA")*/
+
+            //   .anyRequest().authenticated()
+            .and()
+            .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
+            .and()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+      http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+   }
 }

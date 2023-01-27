@@ -33,20 +33,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class Orden_detallesController {
    @Autowired
    public Orden_detallesService Orden_detallesService;
-      @Autowired
+   @Autowired
    public ProductoService productoservice;
-   
+
    //ValidacionOrden_detalles
- 
+
    //Guardar
    @PostMapping("/orden_detalles")
-     public boolean guardar(@RequestBody Orden_detalles orden_detalles) {
-         if(productoservice.validarStoc(orden_detalles.getCantidad(),orden_detalles.getProducto().getId_producto())){
-                 Orden_detallesService.save(orden_detalles);
-          return true;
-      }else{return false;}
-       
+   public boolean guardar(@RequestBody Orden_detalles orden_detalles) {
+      if (productoservice.validarStoc(orden_detalles.getCantidad(), orden_detalles.getProducto().getId_producto())) {
+         Orden_detallesService.save(orden_detalles);
+         return true;
+      } else {
+         return false;
       }
+
+   }
    
    /*
    public String guardar(@RequestBody Orden_detalles orden_detalles) {
@@ -82,9 +84,9 @@ public class Orden_detallesController {
 
       Orden_detalles Actual = Orden_detallesService.findById(id);
       Actual.setCantidad(orden_detalles.getCantidad());
-      Actual.setDescuento(orden_detalles.getDescuento());
-      Actual.setFecha_orden(orden_detalles.getFecha_orden());
-      Actual.setSubtotal(orden_detalles.getSubtotal());
+      Actual.setPrecio(orden_detalles.getPrecio());
+//      Actual.setFecha_orden(orden_detalles.getFecha_orden());
+//      Actual.setSubtotal(orden_detalles.getSubtotal());
 
       return Orden_detallesService.save(Actual);
    }

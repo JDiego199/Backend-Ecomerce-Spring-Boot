@@ -5,7 +5,9 @@
 package com.BackendEcomerce.Repository;
 
 import com.BackendEcomerce.model.Cliente;
+
 import java.util.Optional;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +17,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ClienteRepository extends CrudRepository<Cliente, Integer> {
 
-       // Cliente findByUserName(String nombre_usuario);
-          Optional<Cliente> findByUserName(String userName);
+   // Cliente findByUserName(String nombre_usuario);
+   Optional<Cliente> findByUserName(String userName);
 
 }

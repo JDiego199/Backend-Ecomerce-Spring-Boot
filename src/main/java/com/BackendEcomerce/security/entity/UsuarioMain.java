@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,70 +18,68 @@ import lombok.Setter;
  * Clase que implementa los privilegios de cada usuario
  * UserDetails es una clase propia de Spring Security
  */
-    @Getter
+@Getter
 @Setter
 public class UsuarioMain implements UserDetails {
 
    public int id;
-    private String userName;
-    private String password;
-    // Variable que nos da la autorización (no confundir con autenticación)
-    // Coleccion de tipo generico que extendiende
-    // de GranthedAuthority de Spring security
-    private Collection<? extends GrantedAuthority> authorities;
+   private String userName;
+   private String password;
+   // Variable que nos da la autorización (no confundir con autenticación)
+   // Coleccion de tipo generico que extendiende
+   // de GranthedAuthority de Spring security
+   private Collection<? extends GrantedAuthority> authorities;
 
-    //Constructor
+   //Constructor
 
-    public UsuarioMain(int id, String userName, String password, Collection<? extends GrantedAuthority> authorities) {
-        this.id = id;
-        this.userName = userName;
-        this.password = password;
-        this.authorities = authorities;
-    }
+   public UsuarioMain(int id, String userName, String password, Collection<? extends GrantedAuthority> authorities) {
+      this.id = id;
+      this.userName = userName;
+      this.password = password;
+      this.authorities = authorities;
+   }
 
-    //Metodo que asigna los privilegios (autorización)
-    public static UsuarioMain build(Cliente usuario){
-        //Convertimos la clase Rol a la clase GrantedAuthority
-        List<GrantedAuthority> authorities =
-                usuario.getRoles()
-                        .stream()
-                        .map(rol -> new SimpleGrantedAuthority(rol.getRolNombre().name()))
-                .collect(Collectors.toList());
-        return new UsuarioMain(usuario.getId_cliente(),usuario.getUserName(), 
-                usuario.getPassword(), authorities);
-    }
-    
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
+   //Metodo que asigna los privilegios (autorización)
+   public static UsuarioMain build(Cliente usuario) {
+      //Convertimos la clase Rol a la clase GrantedAuthority
+      List<GrantedAuthority> authorities =
+            usuario.getRoles()
+                  .stream()
+                  .map(rol -> new SimpleGrantedAuthority(rol.getRolNombre().name()))
+                  .collect(Collectors.toList());
+      return new UsuarioMain(usuario.getId_cliente(), usuario.getUserName(),
+            usuario.getPassword(), authorities);
+   }
 
    @Override
-    public String getUsername() {
-        return userName;
-    }
+   public Collection<? extends GrantedAuthority> getAuthorities() {
+      return authorities;
+   }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
+   @Override
+   public String getUsername() {
+      return userName;
+   }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
+   @Override
+   public boolean isAccountNonExpired() {
+      return true;
+   }
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
+   @Override
+   public boolean isAccountNonLocked() {
+      return true;
+   }
 
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+   @Override
+   public boolean isCredentialsNonExpired() {
+      return true;
+   }
 
-
+   @Override
+   public boolean isEnabled() {
+      return true;
+   }
 
 
 }
