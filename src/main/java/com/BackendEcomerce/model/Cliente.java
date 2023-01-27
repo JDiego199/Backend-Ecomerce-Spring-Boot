@@ -51,8 +51,8 @@ public class Cliente {
    @Column(name = "userName", nullable = false)
    private String userName;
 
-   @OneToMany()
-   private List<Feedback> feedback;
+//   @OneToMany()
+//   private List<Feedback> feedback;
 
    @ManyToMany
    // join columns hace referencia a la columna que hace referencia hacia esta
@@ -62,18 +62,16 @@ public class Cliente {
          inverseJoinColumns = @JoinColumn(name = "rol_id"))
    private Set<Rol> roles = new HashSet<>();
 
-   //  private Set<String> roless = new HashSet<>();
-   //  @OneToOne()
-   //  private Cliente_empresa cliente_empresa;
-
-   //@OneToOne()
-   // private Cliente_persona cliente_persona;
-
-
    @OneToMany()
    private List<Direccion> direccion;
 
-   public Cliente(Integer id_cliente, String nombre, String email, String telefono, Calendar fecha_registro, String password, String userName, Set<Rol> roles, List<Direccion> direccion) {
+   @OneToMany()
+   private List<Ordenes> ordenes;
+
+   @OneToMany()
+   private List<Orden_detalles> ordenDetalles;
+
+   public Cliente(Integer id_cliente, String nombre, String email, String telefono, Calendar fecha_registro, String password, String userName, Set<Rol> roles, List<Direccion> direccion, List<Ordenes> ordenes, List<Orden_detalles> ordenDetalles) {
       this.id_cliente = id_cliente;
       this.nombre = nombre;
       this.email = email;
@@ -81,7 +79,28 @@ public class Cliente {
       this.fecha_registro = fecha_registro;
       this.password = password;
       this.userName = userName;
+//      this.feedback = feedback;
       this.roles = roles;
       this.direccion = direccion;
+      this.ordenes = ordenes;
+      this.ordenDetalles = ordenDetalles;
    }
+
+   @Override
+   public String toString() {
+      return "Cliente{" +
+              "id_cliente=" + id_cliente +
+              ", nombre='" + nombre + '\'' +
+              ", email='" + email + '\'' +
+              ", telefono='" + telefono + '\'' +
+              ", fecha_registro=" + fecha_registro +
+              ", password='" + password + '\'' +
+              ", userName='" + userName + '\'' +
+//              ", feedback=" + feedback +
+              ", roles=" + roles +
+              ", direccion=" + direccion +
+              ", ordenDetalles=" + ordenDetalles +
+              '}';
+   }
+
 }

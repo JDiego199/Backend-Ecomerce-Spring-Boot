@@ -44,33 +44,26 @@ public class Orden_detalles {
    private Producto producto;
 
    @ManyToOne()
-   private  Cliente_empresa cliente_empresa;
+   private  Cliente cliente;
 
-   @ManyToOne()
-   private  Cliente_persona cliente_persona;
+   public Orden_detalles(Integer id_orden_detalle, int cantidad, float precio, List<com.BackendEcomerce.model.Ordenes> ordenes, Producto producto, Cliente cliente) {
+      this.id_orden_detalle = id_orden_detalle;
+      this.cantidad = cantidad;
+      this.precio = precio;
+      Ordenes = ordenes;
+      this.producto = producto;
+      this.cliente = cliente;
+   }
 
    @Override
    public String toString() {
       return "Orden_detalles{" +
-            "id_orden_detalle=" + id_orden_detalle +
-            ", cantidad=" + cantidad +
-            ", precio=" + precio+
-//            ", fecha_orden=" + fecha_orden +
-            ", Ordenes=" + Ordenes +
-            ", producto=" + producto +
-            ", cliente_empresa=" + cliente_empresa +
-            ", cliente_persona=" + cliente_persona +
-            '}';
-   }
-
-   public Orden_detalles(Integer id_orden_detalle, int cantidad, float precio,List<com.BackendEcomerce.model.Ordenes> ordenes, Producto producto, Cliente_empresa cliente_empresa, Cliente_persona cliente_persona) {
-      this.id_orden_detalle = id_orden_detalle;
-      this.cantidad = cantidad;
-      this.precio = precio;
-//      this.fecha_orden = fecha_orden;
-      Ordenes = ordenes;
-      this.producto = producto;
-      this.cliente_empresa = cliente_empresa;
-      this.cliente_persona = cliente_persona;
+              "id_orden_detalle=" + id_orden_detalle +
+              ", cantidad=" + cantidad +
+              ", precio=" + precio +
+              ", Ordenes=" + Ordenes +
+              ", producto=" + producto +
+              ", cliente=" + cliente +
+              '}';
    }
 }

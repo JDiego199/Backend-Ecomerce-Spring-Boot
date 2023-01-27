@@ -52,33 +52,10 @@ public class Cliente_empresa {
    @OneToOne()
    private Cliente cliente;
 
-   @OneToMany()
-   private List<Ordenes> ordenes;
-
-   @OneToMany()
-   private List<Orden_detalles> ordenDetalles;
-
    @Column(name = "imagen")
    private String[] fileList;
 
-   @Override
-   public String toString() {
-      return "Cliente_empresa{" +
-            "id_empresa=" + id_empresa +
-            ", dni_ruc='" + dni_ruc + '\'' +
-            ", razon_social='" + razon_social + '\'' +
-            ", nombre_comercial='" + nombre_comercial + '\'' +
-            ", reputacion=" + reputacion +
-            ", fecha_registro=" + fecha_registro +
-            ", producto=" + producto +
-            ", cliente=" + cliente +
-            ", ordenes=" + ordenes +
-            ", ordenDetalles=" + ordenDetalles +
-            ", fileList=" + Arrays.toString(fileList) +
-            '}';
-   }
-
-   public Cliente_empresa(Integer id_empresa, String dni_ruc, String razon_social, String nombre_comercial, int reputacion, Calendar fecha_registro, List<Producto> producto, Cliente cliente, List<Ordenes> ordenes, List<Orden_detalles> ordenDetalles) {
+   public Cliente_empresa(Integer id_empresa, String dni_ruc, String razon_social, String nombre_comercial, int reputacion, Calendar fecha_registro, List<Producto> producto, Cliente cliente, String[] fileList) {
       this.id_empresa = id_empresa;
       this.dni_ruc = dni_ruc;
       this.razon_social = razon_social;
@@ -87,7 +64,22 @@ public class Cliente_empresa {
       this.fecha_registro = fecha_registro;
       this.producto = producto;
       this.cliente = cliente;
-      this.ordenes = ordenes;
-      this.ordenDetalles = ordenDetalles;
+      this.fileList = fileList;
    }
+
+   @Override
+   public String toString() {
+      return "Cliente_empresa{" +
+              "id_empresa=" + id_empresa +
+              ", dni_ruc='" + dni_ruc + '\'' +
+              ", razon_social='" + razon_social + '\'' +
+              ", nombre_comercial='" + nombre_comercial + '\'' +
+              ", reputacion=" + reputacion +
+              ", fecha_registro=" + fecha_registro +
+              ", producto=" + producto +
+              ", cliente=" + cliente +
+              ", fileList=" + Arrays.toString(fileList) +
+              '}';
+   }
+
 }

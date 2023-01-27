@@ -35,12 +35,22 @@ public class Feedback {
    private Producto producto;
 
 //   @ManyToOne()
-//   private Cliente_empresa cliente_empresa;
-//
-//   @ManyToOne()
-//   private Cliente_persona cliente_persona;
+//   private Cliente cliente;
 
-   @ManyToOne()
-   private Cliente cliente;
+   public Feedback(Integer id_feedback, String descripcion, Producto producto) {
+      this.id_feedback = id_feedback;
+      this.descripcion = descripcion;
+      this.producto = producto;
+//      this.cliente = cliente;
+   }
 
+   @Override
+   public String toString() {
+      return "Feedback{" +
+              "id_feedback=" + id_feedback +
+              ", descripcion='" + descripcion + '\'' +
+              ", producto=" + producto +
+//              ", cliente=" + cliente +
+              '}';
+   }
 }

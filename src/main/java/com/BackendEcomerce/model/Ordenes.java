@@ -49,9 +49,6 @@ public class Ordenes {
    private Repartidor repartidor;
 
    @ManyToOne()
-   private Cliente_empresa cliente_empresa;
-
-   @ManyToOne()
-   private Cliente_persona cliente_persona;
+   private Cliente cliente;
 
 }
