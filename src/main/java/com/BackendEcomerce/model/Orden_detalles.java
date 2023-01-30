@@ -37,8 +37,11 @@ public class Orden_detalles {
 //   @Temporal(TemporalType.DATE)
 //   private Calendar fecha_orden;
 
-   @OneToMany()
-   private List<Ordenes> Ordenes;
+
+   
+   
+   @ManyToOne()
+   private Ordenes ordenes;
 
    @ManyToOne()
    private Producto producto;
@@ -46,14 +49,16 @@ public class Orden_detalles {
    @ManyToOne()
    private  Cliente cliente;
 
-   public Orden_detalles(Integer id_orden_detalle, int cantidad, float precio, List<com.BackendEcomerce.model.Ordenes> ordenes, Producto producto, Cliente cliente) {
-      this.id_orden_detalle = id_orden_detalle;
-      this.cantidad = cantidad;
-      this.precio = precio;
-      Ordenes = ordenes;
-      this.producto = producto;
-      this.cliente = cliente;
-   }
+    public Orden_detalles(Integer id_orden_detalle, int cantidad, float precio, Ordenes ordenes, Producto producto, Cliente cliente) {
+        this.id_orden_detalle = id_orden_detalle;
+        this.cantidad = cantidad;
+        this.precio = precio;
+        this.ordenes = ordenes;
+        this.producto = producto;
+        this.cliente = cliente;
+    }
+
+
 
    @Override
    public String toString() {
@@ -61,7 +66,7 @@ public class Orden_detalles {
               "id_orden_detalle=" + id_orden_detalle +
               ", cantidad=" + cantidad +
               ", precio=" + precio +
-              ", Ordenes=" + Ordenes +
+      
               ", producto=" + producto +
               ", cliente=" + cliente +
               '}';

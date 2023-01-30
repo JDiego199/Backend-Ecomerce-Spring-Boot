@@ -28,22 +28,21 @@ public class Ordenes {
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Integer id_orden;
 
-   @Column(name = "numero_factura", nullable = false)
+   @Column(name = "numero_factura")
    private int numero_factura;
-   @Column(name = "subTotal", nullable = false)
+   @Column(name = "subTotal")
    private float subTotal;
-   @Column(name = "total", nullable = false)
+   @Column(name = "total")
    private float total;
-   @Column(name = "iva", nullable = false)
+   @Column(name = "iva")
    private float iva;
 
-   @Column(name = "fecha", nullable = false)
+   @Column(name = "fecha")
    @Temporal(TemporalType.DATE)
    private Calendar fecha;
 
-
-   @ManyToOne()
-   private Orden_detalles ordenes_detalles;
+   @OneToMany()
+   private List<Orden_detalles> Orden_detalles;
 
    @ManyToOne()
    private Repartidor repartidor;
