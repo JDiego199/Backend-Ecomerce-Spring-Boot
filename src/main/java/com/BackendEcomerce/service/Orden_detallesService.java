@@ -19,5 +19,5 @@ public interface Orden_detallesService {
    public Orden_detalles findById(Integer id);
 
    public void delete(Integer id);
-
+    public List<Orden_detalles> findAllOrdenesDetalles(Integer id);
 }

@@ -6,6 +6,7 @@ package com.BackendEcomerce.service;
 
 import com.BackendEcomerce.Repository.Orden_detallesRepository;
 import com.BackendEcomerce.model.Orden_detalles;
+import java.util.ArrayList;
 
 import java.util.List;
 
@@ -47,4 +48,27 @@ public class Orden_detallesServiceImplement implements Orden_detallesService {
    public void delete(Integer id) {
       orden_detallesRepository.deleteById(id);
    }
+   
+      @Override
+   @Transactional(readOnly = true)
+   public List<Orden_detalles> findAllOrdenesDetalles(Integer id) {
+
+      List<Orden_detalles> x;
+      List<Orden_detalles> y = new ArrayList<>();
+      x = (List<Orden_detalles>) orden_detallesRepository.findAll();
+      Integer a;
+      int n = x.size();
+      for (int i = 0; i < n; i++) {
+
+         a = x.get(i).getCliente().getId_cliente();
+         //  System.out.printf("valor a: "+a+" valor id: "+id);
+        // System.out.printf(x.get(i).getCliente_empresa().getId_empresa().toString());
+         if (a == id) {
+            y.add(x.get(i));
+         }
+      }
+
+      return y;
+   }
+
 }

@@ -6,8 +6,10 @@ package com.BackendEcomerce.Controller;
 
 
 import com.BackendEcomerce.LogicaNegocio.Validaciones.ValidacionOrden_detalles;
+import com.BackendEcomerce.model.Cliente;
 import com.BackendEcomerce.model.Orden_detalles;
 import com.BackendEcomerce.model.Producto;
+import com.BackendEcomerce.service.ClienteService;
 import com.BackendEcomerce.service.Orden_detallesService;
 import com.BackendEcomerce.service.ProductoService;
 
@@ -35,14 +37,23 @@ public class Orden_detallesController {
    public Orden_detallesService Orden_detallesService;
    @Autowired
    public ProductoService productoservice;
+   
+   @Autowired
+   public ClienteService clienteService;
 
    //ValidacionOrden_detalles
 
    //Guardar
-   @PostMapping("/orden_detalles")
-   public boolean guardar(@RequestBody Orden_detalles orden_detalles) {
-      if (productoservice.validarStoc(orden_detalles.getCantidad(), orden_detalles.getProducto().getId_producto())) {
-         Orden_detallesService.save(orden_detalles);
+   @PostMapping("/orden_detalles/cliente={idCliente}/producto={idProducto}")
+   public boolean guardar(@RequestBody Orden_detalles orden_detalles,@PathVariable Integer idCliente, @PathVariable Integer idProducto) {
+      if (productoservice.validarStoc(orden_detalles.getCantidad(), idProducto)) {
+         Cliente cliente  = new Cliente();
+         Producto producto = new Producto();
+         cliente = clienteService.findById(idCliente);
+         producto = productoservice.findById(idProducto);
+          orden_detalles.setCliente(cliente);
+          orden_detalles.setProducto(producto);
+          Orden_detallesService.save(orden_detalles);
          return true;
       } else {
          return false;
@@ -65,6 +76,7 @@ public class Orden_detallesController {
    //listar
    @GetMapping("/orden_detalles")
    public List<Orden_detalles> listar() {
+       
       return Orden_detallesService.findAll();
    }
 
@@ -72,7 +84,12 @@ public class Orden_detallesController {
    public void eliminar(@PathVariable Integer id) {
       Orden_detallesService.delete(id);
    }
+  @GetMapping("/orden_detallesCliente/{id}")
+   public List<Orden_detalles> listarPorEmpresa(@PathVariable Integer id) {
 
+
+      return Orden_detallesService.findAllOrdenesDetalles(id);
+   }
    //get una cuenta
    @GetMapping("/orden_detalles/{id}")
    public Orden_detalles getUnaAhorros(@PathVariable Integer id) {
