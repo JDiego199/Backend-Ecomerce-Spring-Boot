@@ -52,6 +52,10 @@ public class Cliente_empresa {
    @OneToOne()
    private Cliente cliente;
 
+      @OneToMany()
+   private List<Ordenes> ordenes;
+
+   
    @Column(name = "imagen")
    private String[] fileList;
 

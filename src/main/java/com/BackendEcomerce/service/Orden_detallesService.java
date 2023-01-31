@@ -20,4 +20,7 @@ public interface Orden_detallesService {
 
    public void delete(Integer id);
     public List<Orden_detalles> findAllOrdenesDetalles(Integer id);
+       public List<Orden_detalles> findAllOrdenesDetallesClienteCompras(Integer id);
+         public List<Orden_detalles> findAllOrdenesDetallesEmpresaCompras(Integer id, Integer id_empresa);
+
 }

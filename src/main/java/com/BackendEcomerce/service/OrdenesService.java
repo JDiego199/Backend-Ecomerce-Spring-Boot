@@ -21,5 +21,6 @@ public interface OrdenesService {
    public void delete(Integer id);
    
    public void confirmarOrder(Integer id, Integer idprod);
-   
+      public List<Ordenes> findAllOrdenesEmpresa(Integer id);
+       public List<Ordenes> findAllOrdenesCliente(Integer id);
 }

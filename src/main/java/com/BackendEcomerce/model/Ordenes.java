@@ -49,5 +49,8 @@ public class Ordenes {
 
    @ManyToOne()
    private Cliente cliente;
+   
+     @ManyToOne()
+   private Cliente_empresa cliente_empresa;
 
 }

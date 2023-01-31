@@ -30,8 +30,6 @@ public class Direccion {
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Integer id_direccion;
 
-   @Column(name = "direccion", nullable = false)
-   private String direccion;
 
    @Column(name = "ciudad", nullable = false)
    private String ciudad;
@@ -42,22 +40,15 @@ public class Direccion {
    @Column(name = "calle", nullable = false)
    private String calle;
 
-   @Column(name = "codigo_postal", nullable = false)
-   private String codigo_postal;
 
-   @Column(name = "fecha_registro", nullable = false)
-   // @Temporal(TemporalType.DATE)
-   private Date fecha;
 
    @ManyToOne()
    private Cliente cliente;
 
    public Direccion(String direccion, String ciudad, String provincia, String calle, String codigo_postal, Date fecha, Cliente cliente) {
-      this.direccion = direccion;
       this.ciudad = ciudad;
       this.provincia = provincia;
       this.calle = calle;
-      this.codigo_postal = codigo_postal;
       this.fecha = fecha;
       this.cliente = cliente;
    }

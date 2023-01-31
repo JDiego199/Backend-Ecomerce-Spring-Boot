@@ -6,6 +6,7 @@ package com.BackendEcomerce.service;
 
 import com.BackendEcomerce.Repository.Orden_detallesRepository;
 import com.BackendEcomerce.model.Orden_detalles;
+import com.BackendEcomerce.model.Ordenes;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -24,7 +25,8 @@ public class Orden_detallesServiceImplement implements Orden_detallesService {
 
    @Autowired
    private Orden_detallesRepository orden_detallesRepository;
-
+   @Autowired
+   private OrdenesService ordenesService;
    @Override
    @Transactional(readOnly = true)
    public List<Orden_detalles> findAll() {
@@ -63,6 +65,27 @@ public class Orden_detallesServiceImplement implements Orden_detallesService {
          a = x.get(i).getCliente().getId_cliente();
          //  System.out.printf("valor a: "+a+" valor id: "+id);
         // System.out.printf(x.get(i).getCliente_empresa().getId_empresa().toString());
+         if (a == id && x.get(i).getOrdenes() == null) {
+            y.add(x.get(i));
+         }
+      }
+
+      return y;
+   }
+         @Override
+   @Transactional(readOnly = true)
+   public List<Orden_detalles> findAllOrdenesDetallesClienteCompras(Integer id) {
+
+      List<Orden_detalles> x;
+      List<Orden_detalles> y = new ArrayList<>();
+      x = (List<Orden_detalles>) orden_detallesRepository.findAll();
+      Integer a;
+      int n = x.size();
+      for (int i = 0; i < n; i++) {
+
+         a = x.get(i).getOrdenes().getId_orden();
+         //  System.out.printf("valor a: "+a+" valor id: "+id);
+        // System.out.printf(x.get(i).getCliente_empresa().getId_empresa().toString());
          if (a == id) {
             y.add(x.get(i));
          }
@@ -70,5 +93,27 @@ public class Orden_detallesServiceImplement implements Orden_detallesService {
 
       return y;
    }
+         @Override
+   @Transactional(readOnly = true)
+   public List<Orden_detalles> findAllOrdenesDetallesEmpresaCompras(Integer id, Integer id_empresa) {
+
+      List<Orden_detalles> x;
+      List<Orden_detalles> y = new ArrayList<>();
+      x = (List<Orden_detalles>) orden_detallesRepository.findAll();
+      Integer a;
+      int n = x.size();
+      for (int i = 0; i < n; i++) {
+
+         a = x.get(i).getOrdenes().getId_orden();
+         //  System.out.printf("valor a: "+a+" valor id: "+id);
+        // System.out.printf(x.get(i).getCliente_empresa().getId_empresa().toString());
+         if (a == id && x.get(i).getProducto().getCliente_empresa().getId_empresa() ==id_empresa) {
+            y.add(x.get(i));
+         }
+      }
+
+      return y;
+   }
+
 
 }

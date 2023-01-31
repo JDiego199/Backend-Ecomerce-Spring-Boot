@@ -5,8 +5,10 @@
 package com.BackendEcomerce.Controller;
 
 
+import com.BackendEcomerce.model.Cliente;
 import com.BackendEcomerce.model.Orden_detalles;
 import com.BackendEcomerce.model.Ordenes;
+import com.BackendEcomerce.service.ClienteService;
 import com.BackendEcomerce.service.Orden_detallesService;
 import com.BackendEcomerce.service.OrdenesService;
 
@@ -34,12 +36,19 @@ public class OrdenesController {
    public OrdenesService OrdenesService;
    @Autowired
    public Orden_detallesService orden_detalles;
-
+   @Autowired
+   public ClienteService clienteService;
    //Guardar
-   @PostMapping("/ordenes")
-   public Ordenes guardar(@RequestBody Ordenes ordenes) {
+   @PostMapping("/ordenes/{id}")
+   public Ordenes guardar(@RequestBody Ordenes ordenes, @PathVariable Integer id) {
+  
+      Cliente cliente = new Cliente();
 
-      OrdenesService.confirmarOrder(ordenes.getOrdenes_detalles().getProducto().getId_producto(), ordenes.getOrdenes_detalles().getCantidad());
+      cliente = clienteService.findById(id);
+      cliente.setId_cliente(id);
+      ordenes.setCliente(cliente);
+      
+     // OrdenesService.confirmarOrder(ordenes.getOrden_detalles().get(0).getProducto().getId_producto(), ordenes.getOrden_detalles().get(0).getCantidad());
       return OrdenesService.save(ordenes);
 
       //Orden_detalles orden = new Orden_detalles();
@@ -60,8 +69,15 @@ public class OrdenesController {
 
    //get una cuenta
    @GetMapping("/ordenes/{id}")
-   public Ordenes getUnaAhorros(@PathVariable Integer id) {
-      return OrdenesService.findById(id);
+   public List<Ordenes> getUnaAhorros(@PathVariable Integer id) {
+       
+      return  OrdenesService.findAllOrdenesEmpresa(id);
+   }
+
+      @GetMapping("/ordenesCliente/{id}")
+   public List<Ordenes> ordenesCliente(@PathVariable Integer id) {
+       
+      return  OrdenesService.findAllOrdenesCliente(id);
    }
 
    @PutMapping("/ordenes/{id}")

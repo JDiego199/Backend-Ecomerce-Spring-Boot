@@ -64,9 +64,6 @@ public class DireccionController {
       Direccion Actual = direccionService.findById(id);
       Actual.setCalle(direccion.getCalle());
       Actual.setCiudad(direccion.getCiudad());
-      Actual.setCodigo_postal(direccion.getCodigo_postal());
-      Actual.setDireccion(direccion.getDireccion());
-      Actual.setFecha(direccion.getFecha());
       Actual.setProvincia(direccion.getProvincia());
 
 
